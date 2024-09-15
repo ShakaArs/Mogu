@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		042251A92C96DD6F00046D7D /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042251A82C96DD6F00046D7D /* File.swift */; };
+		042251AB2C96DD9300046D7D /* summary_page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042251AA2C96DD9300046D7D /* summary_page.swift */; };
 		0425AD092C93CF7F001E82E4 /* MoGuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425AD082C93CF7F001E82E4 /* MoGuApp.swift */; };
 		0425AD0B2C93CF7F001E82E4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425AD0A2C93CF7F001E82E4 /* ContentView.swift */; };
 		0425AD0D2C93CF7F001E82E4 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425AD0C2C93CF7F001E82E4 /* Item.swift */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		042251A82C96DD6F00046D7D /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		042251AA2C96DD9300046D7D /* summary_page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = summary_page.swift; sourceTree = "<group>"; };
 		0425AD052C93CF7F001E82E4 /* MoGu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoGu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0425AD082C93CF7F001E82E4 /* MoGuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoGuApp.swift; sourceTree = "<group>"; };
 		0425AD0A2C93CF7F001E82E4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -98,6 +102,8 @@
 			children = (
 				0425AD082C93CF7F001E82E4 /* MoGuApp.swift */,
 				0425AD0A2C93CF7F001E82E4 /* ContentView.swift */,
+				042251A82C96DD6F00046D7D /* File.swift */,
+				042251AA2C96DD9300046D7D /* summary_page.swift */,
 				0425AD0C2C93CF7F001E82E4 /* Item.swift */,
 				0425AD0E2C93CF80001E82E4 /* Assets.xcassets */,
 				0425AD102C93CF80001E82E4 /* Preview Content */,
@@ -260,7 +266,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				042251AB2C96DD9300046D7D /* summary_page.swift in Sources */,
 				0425AD0B2C93CF7F001E82E4 /* ContentView.swift in Sources */,
+				042251A92C96DD6F00046D7D /* File.swift in Sources */,
 				0425AD0D2C93CF7F001E82E4 /* Item.swift in Sources */,
 				0425AD092C93CF7F001E82E4 /* MoGuApp.swift in Sources */,
 			);
