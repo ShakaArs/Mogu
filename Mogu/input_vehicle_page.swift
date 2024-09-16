@@ -1,8 +1,33 @@
-//
-//  input_vehicle_page.swift
-//  MoGu
-//
-//  Created by MacBook Air on 16/09/24.
-//
+import SwiftUI
 
-import Foundation
+struct InputVehiclePage: View {
+    var body: some View {
+        NavigationView {
+            
+            VStack {
+                Spacer()
+    
+                Button(action: {
+                    
+                }) {
+                    Text("Submit")
+                        .font(.title2)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.green)
+                        .cornerRadius(10)
+                        .padding(.horizontal)
+                }
+                
+                Spacer()
+            }
+            .navigationTitle("Input Vehicle")
+        }
+    }
+}
+
+#Preview {
+    InputVehiclePage()
+}
+

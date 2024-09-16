@@ -55,9 +55,9 @@ struct SummaryView: View {
                         }
                     )
                     btnComponent(
-                        icon: "oilcan.fill",
+                        icon: "car.2.fill",
                         iconInput: "arrow.right",
-                        buttonText: "Set your latest oil changes",
+                        buttonText: "Set your latest tires changes",
                         backgroundColor: .white,
                         textColor: .black,
                         action: {
@@ -65,9 +65,9 @@ struct SummaryView: View {
                         }
                     )
                     btnComponent(
-                        icon: "oilcan.fill",
+                        icon: "brakesignal",
                         iconInput: "arrow.right",
-                        buttonText: "Set your latest oil changes",
+                        buttonText: "Set your latest brake changes",
                         backgroundColor: .white,
                         textColor: .black,
                         action: {

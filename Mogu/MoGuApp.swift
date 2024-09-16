@@ -26,6 +26,8 @@ struct MoGuApp: App {
     var body: some Scene {
         WindowGroup {
             SummaryView()
+            
+//            ReminderView()
         }
         .modelContainer(sharedModelContainer)
     }
