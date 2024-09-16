@@ -12,13 +12,16 @@ struct ReminderView: View {
         TabView{
             NavigationView {
                 VStack{
-                    
-                    HStack{
+
+                    VStack{
                         VStack{
-                            Text("Motor Service Due : Your motorcycle needs an ")
-                                .font(.body)
                             HStack{
-                                Text(" oil change by 14-10-2024").bold()
+                                Text("Motor Service Due : Your motorcycle needs a ")
+                                    .font(.body)
+                                Spacer()
+                            }
+                            HStack{
+                                Text(" brake change by 14-10-2024").bold()
                                 Spacer()
                             }
                         }
@@ -31,7 +34,7 @@ struct ReminderView: View {
                     HStack{
                         VStack{
                             HStack{
-                                Text(" Motor Service Due : Your motorcycle needs a ")
+                                Text("Motor Service Due : Your motorcycle needs a ")
                                     .font(.body)
                                 Spacer()
                             }
@@ -67,7 +70,7 @@ struct ReminderView: View {
                     Spacer()
                 }
                 .navigationTitle("Reminder")
-            }
+            }.padding()
             
         }
     }

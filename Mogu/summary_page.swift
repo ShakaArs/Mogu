@@ -84,6 +84,7 @@ struct SummaryView: View {
                         .font(.title2)
                         .foregroundColor(.green)
                 })
+                
             }
             .tabItem {
                 Image(systemName: "engine.combustion.fill")

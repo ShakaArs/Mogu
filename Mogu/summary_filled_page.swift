@@ -5,52 +5,55 @@ struct SummaryFilledView: View {
         TabView {
             NavigationView {
                 VStack {
-                    HStack {
-                        Text("Is it")
-                            .padding(.leading)
-                            .font(.title2)
-                        Text("Time")
-                            .foregroundColor(.green)
-                            .font(.title2)
-                        Text("to service ?")
-                            .font(.title2)
-                        
-                        Spacer()
-                    }
-                    .padding(.horizontal)
-                    VStack(alignment : .leading){
-                        HStack{
-                            Text("Automatic")
+                    VStack{
+                        HStack {
+                            Text("Is it")
+                                .padding(.leading)
+                                .font(.title2)
+                            Text("Time")
                                 .foregroundColor(.green)
-                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                                 .font(.title2)
-                            Text("Motorcycle")
+                            Text("to service ?")
                                 .font(.title2)
+                            
                             Spacer()
-                            Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                                Text("Edit")
-                                    .foregroundColor(.black)
-                                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                            })
-        
-                        }
-                        .padding(.horizontal)
-                        HStack(){
-                            Text("012670")
-                                .font(.largeTitle)
-                                .fontWeight(.bold)
-                            Text("km")
-                                .foregroundColor(.green)
-                                .fontWeight(.bold)
                         }
                         .padding(.leading)
-                    }
+                        VStack(alignment : .leading){
+                            HStack{
+                                Text("Automatic")
+                                    .foregroundColor(.green)
+                                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                    .font(.title2)
+                                Text("Motorcycle")
+                                    .font(.title2)
+                                Spacer()
+                                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+                                    Text("Edit")
+                                        .foregroundColor(.black)
+                                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                })
+                                .padding(.trailing)
+                            }
+                            
+                            .padding(.horizontal)
+                            Spacer()
+                            HStack(){
+                                Text("012670")
+                                    .font(.largeTitle)
+                                    .fontWeight(.bold)
+                                Text("km")
+                                    .foregroundColor(.green)
+                                    .fontWeight(.bold)
+                            }
+                            .padding(.leading)
+                        }
                         .padding()
                         .background(Color.white)
                         .cornerRadius(10)
                         .shadow(radius: 5)
-                    
-                    
+                        
+                    }.padding()
                     HStack {
                         Text("Components")
                             .padding(.leading)

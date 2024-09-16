@@ -20,6 +20,9 @@
 		04EB97D62C988B5300BB4DFC /* summary_page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042251AA2C96DD9300046D7D /* summary_page.swift */; };
 		04EB97D82C988D2C00BB4DFC /* input_vehicle_page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB97D72C988D2C00BB4DFC /* input_vehicle_page.swift */; };
 		04EB97DA2C988F2B00BB4DFC /* summary_filled_page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB97D92C988F2B00BB4DFC /* summary_filled_page.swift */; };
+		04EB97DC2C989B4D00BB4DFC /* SummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB97DB2C989B4D00BB4DFC /* SummaryModel.swift */; };
+		04EB97DE2C989B5F00BB4DFC /* SummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB97DD2C989B5F00BB4DFC /* SummaryViewModel.swift */; };
+		04EB97E02C989B8300BB4DFC /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB97DF2C989B8300BB4DFC /* Button.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,9 @@
 		04EB97D42C98886500BB4DFC /* reminder_page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reminder_page.swift; sourceTree = "<group>"; };
 		04EB97D72C988D2C00BB4DFC /* input_vehicle_page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = input_vehicle_page.swift; path = Mogu/input_vehicle_page.swift; sourceTree = SOURCE_ROOT; };
 		04EB97D92C988F2B00BB4DFC /* summary_filled_page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = summary_filled_page.swift; path = Mogu/summary_filled_page.swift; sourceTree = SOURCE_ROOT; };
+		04EB97DB2C989B4D00BB4DFC /* SummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SummaryModel.swift; path = Mogu/Models/SummaryModel.swift; sourceTree = SOURCE_ROOT; };
+		04EB97DD2C989B5F00BB4DFC /* SummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SummaryViewModel.swift; path = Mogu/ViewModels/SummaryViewModel.swift; sourceTree = SOURCE_ROOT; };
+		04EB97DF2C989B8300BB4DFC /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Button.swift; path = Mogu/Helper/Button.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +158,7 @@
 		04EB97CE2C9884F500BB4DFC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				04EB97DB2C989B4D00BB4DFC /* SummaryModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -159,6 +166,7 @@
 		04EB97D02C98850E00BB4DFC /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				04EB97DD2C989B5F00BB4DFC /* SummaryViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -173,6 +181,7 @@
 		04EB97D22C98852200BB4DFC /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				04EB97DF2C989B8300BB4DFC /* Button.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -312,9 +321,12 @@
 				042251A92C96DD6F00046D7D /* File.swift in Sources */,
 				04EB97D82C988D2C00BB4DFC /* input_vehicle_page.swift in Sources */,
 				04EB97DA2C988F2B00BB4DFC /* summary_filled_page.swift in Sources */,
+				04EB97DE2C989B5F00BB4DFC /* SummaryViewModel.swift in Sources */,
 				0425AD0D2C93CF7F001E82E4 /* Item.swift in Sources */,
 				0425AD092C93CF7F001E82E4 /* MoGuApp.swift in Sources */,
 				04EB97D62C988B5300BB4DFC /* summary_page.swift in Sources */,
+				04EB97DC2C989B4D00BB4DFC /* SummaryModel.swift in Sources */,
+				04EB97E02C989B8300BB4DFC /* Button.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
