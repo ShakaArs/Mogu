@@ -92,8 +92,7 @@ struct SummaryView: View {
             
             
             NavigationView {
-                Text("Third Tab View")
-                    .navigationTitle("Third Tab")
+                ReminderView()
             }
             .tabItem {
                 Image(systemName: "bell")
