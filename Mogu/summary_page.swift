@@ -3,7 +3,7 @@ import SwiftUI
 struct SummaryView: View {
     var body: some View {
         TabView {
-            NavigationView {
+            NavigationStack{
                 VStack {
                     HStack {
                         Text("Is it")
@@ -18,27 +18,29 @@ struct SummaryView: View {
                         Spacer()
                     }
                     HStack {
-                        Button(action: {
-                            print("Button tapped")
-                        }) {
-                            HStack {
-                                Text("Set Your Vehicle")
-                                    .font(.title2)
-                                    .bold()
-                                Spacer()
-                                Image(systemName: "arrow.right")
-                                    .font(.title)
+                        NavigationLink(destination: InputVehiclePage()){
+                            Button(action:  {
+                                print("Button tapped")
+                            }) {
+                                HStack {
+                                    Text("Set Your Vehicle")
+                                        .font(.title2)
+                                        .bold()
+                                    Spacer()
+                                    Image(systemName: "arrow.right")
+                                        .font(.title)
+                                }
+                                .padding(25)
+                                .background(Color.green)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
                             }
-                            .padding(25)
-                            .background(Color.green)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
+                            .padding()
                         }
-                        .padding()
                     }
                     
                     HStack {
-                        Text("Component")
+                        Text("Components")
                             .padding(.leading)
                             .font(.title2)
                         Spacer()

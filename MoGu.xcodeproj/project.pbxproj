@@ -16,13 +16,13 @@
 		0425AD1C2C93CF80001E82E4 /* MoGuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425AD1B2C93CF80001E82E4 /* MoGuTests.swift */; };
 		0425AD262C93CF80001E82E4 /* MoGuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425AD252C93CF80001E82E4 /* MoGuUITests.swift */; };
 		0425AD282C93CF80001E82E4 /* MoGuUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425AD272C93CF80001E82E4 /* MoGuUITestsLaunchTests.swift */; };
-		04EB97D52C98886500BB4DFC /* reminder_page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB97D42C98886500BB4DFC /* reminder_page.swift */; };
-		04EB97D62C988B5300BB4DFC /* summary_page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042251AA2C96DD9300046D7D /* summary_page.swift */; };
-		04EB97D82C988D2C00BB4DFC /* input_vehicle_page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB97D72C988D2C00BB4DFC /* input_vehicle_page.swift */; };
-		04EB97DA2C988F2B00BB4DFC /* summary_filled_page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB97D92C988F2B00BB4DFC /* summary_filled_page.swift */; };
 		04EB97DC2C989B4D00BB4DFC /* SummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB97DB2C989B4D00BB4DFC /* SummaryModel.swift */; };
 		04EB97DE2C989B5F00BB4DFC /* SummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB97DD2C989B5F00BB4DFC /* SummaryViewModel.swift */; };
 		04EB97E02C989B8300BB4DFC /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB97DF2C989B8300BB4DFC /* Button.swift */; };
+		04EB97E62C992F4B00BB4DFC /* input_vehicle_page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB97E52C992F4B00BB4DFC /* input_vehicle_page.swift */; };
+		04EB97E82C992F9800BB4DFC /* summary_page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB97E72C992F9800BB4DFC /* summary_page.swift */; };
+		04EB97EA2C992FB100BB4DFC /* reminder_page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB97E92C992FB100BB4DFC /* reminder_page.swift */; };
+		04EB97EC2C992FD800BB4DFC /* summary_filled_page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB97EB2C992FD800BB4DFC /* summary_filled_page.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +44,6 @@
 
 /* Begin PBXFileReference section */
 		042251A82C96DD6F00046D7D /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
-		042251AA2C96DD9300046D7D /* summary_page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = summary_page.swift; sourceTree = "<group>"; usesTabs = 0; };
 		0425AD052C93CF7F001E82E4 /* MoGu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoGu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0425AD082C93CF7F001E82E4 /* MoGuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoGuApp.swift; sourceTree = "<group>"; };
 		0425AD0A2C93CF7F001E82E4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,12 +55,13 @@
 		0425AD212C93CF80001E82E4 /* MoGuUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoGuUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0425AD252C93CF80001E82E4 /* MoGuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoGuUITests.swift; sourceTree = "<group>"; };
 		0425AD272C93CF80001E82E4 /* MoGuUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoGuUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		04EB97D42C98886500BB4DFC /* reminder_page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reminder_page.swift; sourceTree = "<group>"; };
-		04EB97D72C988D2C00BB4DFC /* input_vehicle_page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = input_vehicle_page.swift; path = Mogu/input_vehicle_page.swift; sourceTree = SOURCE_ROOT; };
-		04EB97D92C988F2B00BB4DFC /* summary_filled_page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = summary_filled_page.swift; path = Mogu/summary_filled_page.swift; sourceTree = SOURCE_ROOT; };
 		04EB97DB2C989B4D00BB4DFC /* SummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SummaryModel.swift; path = Mogu/Models/SummaryModel.swift; sourceTree = SOURCE_ROOT; };
 		04EB97DD2C989B5F00BB4DFC /* SummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SummaryViewModel.swift; path = Mogu/ViewModels/SummaryViewModel.swift; sourceTree = SOURCE_ROOT; };
 		04EB97DF2C989B8300BB4DFC /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Button.swift; path = Mogu/Helper/Button.swift; sourceTree = SOURCE_ROOT; };
+		04EB97E52C992F4B00BB4DFC /* input_vehicle_page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = input_vehicle_page.swift; path = Mogu/input_vehicle_page.swift; sourceTree = SOURCE_ROOT; };
+		04EB97E72C992F9800BB4DFC /* summary_page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = summary_page.swift; path = Mogu/summary_page.swift; sourceTree = SOURCE_ROOT; };
+		04EB97E92C992FB100BB4DFC /* reminder_page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = reminder_page.swift; path = Mogu/reminder_page.swift; sourceTree = SOURCE_ROOT; };
+		04EB97EB2C992FD800BB4DFC /* summary_filled_page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = summary_filled_page.swift; path = Mogu/summary_filled_page.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,15 +112,11 @@
 		0425AD072C93CF7F001E82E4 /* MoGu */ = {
 			isa = PBXGroup;
 			children = (
-				04EB97D22C98852200BB4DFC /* Helper */,
 				04EB97D12C98851900BB4DFC /* Views */,
+				04EB97D22C98852200BB4DFC /* Helper */,
 				04EB97D02C98850E00BB4DFC /* ViewModels */,
 				04EB97CE2C9884F500BB4DFC /* Models */,
 				0425AD0A2C93CF7F001E82E4 /* ContentView.swift */,
-				042251AA2C96DD9300046D7D /* summary_page.swift */,
-				04EB97D42C98886500BB4DFC /* reminder_page.swift */,
-				04EB97D72C988D2C00BB4DFC /* input_vehicle_page.swift */,
-				04EB97D92C988F2B00BB4DFC /* summary_filled_page.swift */,
 				0425AD082C93CF7F001E82E4 /* MoGuApp.swift */,
 				042251A82C96DD6F00046D7D /* File.swift */,
 				0425AD0C2C93CF7F001E82E4 /* Item.swift */,
@@ -174,6 +170,10 @@
 		04EB97D12C98851900BB4DFC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				04EB97EB2C992FD800BB4DFC /* summary_filled_page.swift */,
+				04EB97E92C992FB100BB4DFC /* reminder_page.swift */,
+				04EB97E72C992F9800BB4DFC /* summary_page.swift */,
+				04EB97E52C992F4B00BB4DFC /* input_vehicle_page.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -317,14 +317,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				0425AD0B2C93CF7F001E82E4 /* ContentView.swift in Sources */,
-				04EB97D52C98886500BB4DFC /* reminder_page.swift in Sources */,
+				04EB97E82C992F9800BB4DFC /* summary_page.swift in Sources */,
 				042251A92C96DD6F00046D7D /* File.swift in Sources */,
-				04EB97D82C988D2C00BB4DFC /* input_vehicle_page.swift in Sources */,
-				04EB97DA2C988F2B00BB4DFC /* summary_filled_page.swift in Sources */,
 				04EB97DE2C989B5F00BB4DFC /* SummaryViewModel.swift in Sources */,
+				04EB97E62C992F4B00BB4DFC /* input_vehicle_page.swift in Sources */,
 				0425AD0D2C93CF7F001E82E4 /* Item.swift in Sources */,
+				04EB97EC2C992FD800BB4DFC /* summary_filled_page.swift in Sources */,
 				0425AD092C93CF7F001E82E4 /* MoGuApp.swift in Sources */,
-				04EB97D62C988B5300BB4DFC /* summary_page.swift in Sources */,
+				04EB97EA2C992FB100BB4DFC /* reminder_page.swift in Sources */,
 				04EB97DC2C989B4D00BB4DFC /* SummaryModel.swift in Sources */,
 				04EB97E02C989B8300BB4DFC /* Button.swift in Sources */,
 			);
