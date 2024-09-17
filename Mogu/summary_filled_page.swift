@@ -18,7 +18,6 @@ struct SummaryFilledView: View {
                             
                             Spacer()
                         }
-                        .padding(.leading)
                         VStack(alignment : .leading){
                             HStack{
                                 Text("Automatic")
