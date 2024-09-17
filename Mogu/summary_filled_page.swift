@@ -1,3 +1,4 @@
+
 import SwiftUI
 
 struct SummaryFilledView: View {
@@ -59,36 +60,38 @@ struct SummaryFilledView: View {
                             .font(.title2)
                         Spacer()
                     }
-                    
                     btnComponent(
-                        icon: "oilcan.fill",
-                        iconInput: "arrow.right",
-                        buttonText: "Set your latest oil changes",
+                        icon: "star",
+                        iconInput: "chevron.right",
+                        buttonText: "Set Your Vehicle",
                         backgroundColor: .white,
                         textColor: .black,
-                        action: {
-                            print("Back button tapped")
-                        }
+                        frameHeight: 105,
+                        textSize: 20,
+                        destination: ReminderView()
+                        
                     )
                     btnComponent(
-                        icon: "car.2.fill",
-                        iconInput: "arrow.right",
-                        buttonText: "Set your latest tires changes",
+                        icon: "star",
+                        iconInput: "chevron.right",
+                        buttonText: "Set Your Vehicle",
                         backgroundColor: .white,
                         textColor: .black,
-                        action: {
-                            print("Back button tapped")
-                        }
+                        frameHeight: 105,
+                        textSize: 20,
+                        destination: ReminderView()
+                        
                     )
                     btnComponent(
-                        icon: "brakesignal",
-                        iconInput: "arrow.right",
-                        buttonText: "Set your latest brake changes",
+                        icon: "star",
+                        iconInput: "chevron.right",
+                        buttonText: "Set Your Vehicle",
                         backgroundColor: .white,
                         textColor: .black,
-                        action: {
-                            print("Back button tapped")
-                        }
+                        frameHeight: 105,
+                        textSize: 20,
+                        destination: ReminderView()
+                        
                     )
                     Spacer()
                 }
