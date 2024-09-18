@@ -25,7 +25,7 @@ struct MoGuApp: App {
 
     var body: some Scene {
         WindowGroup {
-            SummaryView()
+            SummaryView(vehicleViewModel: VehicleViewModel())
             
 //            ReminderView()
         }

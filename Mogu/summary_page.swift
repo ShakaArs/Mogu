@@ -1,13 +1,14 @@
 import SwiftUI
 
 struct SummaryView: View {
+    @ObservedObject var vehicleViewModel: VehicleViewModel
     @State private var path = NavigationPath()
-
+    
     var body: some View {
         TabView {
-            
-            NavigationStack{
+            NavigationStack {
                 VStack {
+                    // Top section: "Is it time to service?"
                     HStack {
                         Text("Is it")
                             .padding(.leading)
@@ -17,21 +18,29 @@ struct SummaryView: View {
                             .font(.title2)
                         Text("to service ?")
                             .font(.title2)
-                        
                         Spacer()
                     }
-                    
-                    btnComponent(
-                        icon: "",
-                        iconInput: "chevron.right",
-                        buttonText: "Set Your Vehicle",
-                        backgroundColor: .green,
-                        textColor: .white,
-                        frameHeight: 70,
-                        textSize: 30,
-                        destination: InputVehiclePage()
-                        
-                    )
+                    .padding(.top)
+
+                    if vehicleViewModel.isVehicleDataSet {
+                        DisplaySummaryKilometer(vehicleViewModel: vehicleViewModel)
+                            .padding(.horizontal)
+
+                    } else {
+                        btnComponent(
+                            icon: "",
+                            iconInput: "chevron.right",
+                            buttonText: "Set Your Vehicle",
+                            backgroundColor: .green,
+                            textColor: .white,
+                            frameHeight: 70,
+                            textSize: 30,
+                            destination: InputVehiclePage(vehicleViewModel: vehicleViewModel) {
+                            }
+                        )
+                    }
+
+                    // Components section
                     HStack {
                         Text("Components")
                             .padding(.leading)
@@ -39,61 +48,56 @@ struct SummaryView: View {
                         Spacer()
                     }
                     
+                    // Buttons for setting component-related reminders
                     btnComponent(
                         icon: "oilcan.fill",
                         iconInput: "chevron.right",
-                        buttonText: "Set Your Lates Oil Change",
+                        buttonText: "Set Your Latest Oil Change",
                         backgroundColor: .white,
                         textColor: .black,
                         frameHeight: 105,
                         textSize: 15,
                         destination: ReminderView()
-                        
                     )
+                    
                     btnComponent(
                         icon: "circle.circle.fill",
                         iconInput: "chevron.right",
-                        buttonText: "Set Your Lates Oil Change",
+                        buttonText: "Set Your Latest Tire Change",
                         backgroundColor: .white,
                         textColor: .black,
                         frameHeight: 105,
                         textSize: 15,
                         destination: ReminderView()
-                        
                     )
                     btnComponent(
                         icon: "pedal.brake.fill",
                         iconInput: "chevron.right",
-                        buttonText: "Set Your Lates Brake Change",
+                        buttonText: "Set Your Latest Brake Change",
                         backgroundColor: .white,
                         textColor: .black,
                         frameHeight: 105,
                         textSize: 15,
                         destination: ReminderView()
-                        
                     )
-                    
                     
                     Spacer()
                 }
                 .navigationTitle("Summary")
                 .navigationBarItems(trailing: NavigationLink(destination: HistoryView()) {
-                                HStack {
-                                    Image(systemName: "book.and.wrench")
-                                        .padding()
-                                        .foregroundColor(.green)
-                                        .font(.title2)
-                                    
-                                }
-                            })
-                
+                    HStack {
+                        Image(systemName: "book.and.wrench")
+                            .padding()
+                            .foregroundColor(.green)
+                            .font(.title2)
+                    }
+                })
             }
             .tabItem {
                 Image(systemName: "engine.combustion.fill")
                 Text("Summary")
             }
-            
-            
+
             NavigationView {
                 ReminderView()
             }
@@ -105,7 +109,6 @@ struct SummaryView: View {
     }
 }
 
-
 #Preview {
-    SummaryView()
+    SummaryView(vehicleViewModel: VehicleViewModel())
 }

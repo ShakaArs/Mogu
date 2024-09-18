@@ -3,11 +3,16 @@ import SwiftUI
 struct InputVehiclePage: View {
     @Environment(\.dismiss) var dismiss
     @State private var selectedType = "Choose your vehicle"
-    @State private var km : Int? = nil
+    @State private var km: Int? = nil
     @State private var dailyUse: Int? = nil
     @State private var weeklyUse: Int? = nil
+    @ObservedObject var vehicleViewModel: VehicleViewModel
+    var onComplete: () -> Void
     
     let vehicleTypes = ["Manual", "Matic", "Sport"]
+    
+    @State private var showAlert = false
+    @State private var navigateToSummary = false
     
     var body: some View {
         NavigationStack {
@@ -48,10 +53,8 @@ struct InputVehiclePage: View {
                 
                 Section {
                     Button(action: {
-                        print("Submit tapped")
-                        print("Kilometers: \(String(describing: km))")
-                        print("Daily Use: \(String(describing: dailyUse))")
-                        print("Weekly Use: \(String(describing: weeklyUse))")
+                        vehicleViewModel.createVehicle(motorcycleType: selectedType, kilometers: km, dailyUse: dailyUse, weeklyUse: weeklyUse)
+                        showAlert = true
                     }) {
                         Text("Submit")
                             .frame(maxWidth: .infinity)
@@ -61,15 +64,30 @@ struct InputVehiclePage: View {
                             .cornerRadius(10)
                     }
                     .listRowInsets(EdgeInsets())
-                }            }
+                }
+                
+                
+            }
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Input Vehicle")
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("Submit Success"),
+                    message: Text("Your data has been submitted successfully."),
+                    dismissButton: .default(Text("OK")) {
+                        onComplete()
+                        dismiss()
+                    }
+                )
+            }
         }
     }
 }
 
 struct InputVehiclePage_Previews: PreviewProvider {
     static var previews: some View {
-        InputVehiclePage()
+        InputVehiclePage(vehicleViewModel: VehicleViewModel()) {
+            // Completion action
+        }
     }
 }

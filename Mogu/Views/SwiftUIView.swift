@@ -24,7 +24,7 @@ struct SplashScreenView: View {
     var body: some View {
         Group {
             if isActive {
-                SummaryView()
+                SummaryView(vehicleViewModel: VehicleViewModel())
             } else {
                 VStack {
                     
