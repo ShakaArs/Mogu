@@ -1,8 +1,11 @@
 import SwiftUI
 
 struct SummaryView: View {
+    @State private var path = NavigationPath()
+
     var body: some View {
         TabView {
+            
             NavigationStack{
                 VStack {
                     HStack {
@@ -17,28 +20,18 @@ struct SummaryView: View {
                         
                         Spacer()
                     }
-                    HStack {
-                        NavigationLink(destination: InputVehiclePage()){
-                            Button(action:  {
-                                print("Button tapped")
-                            }) {
-                                HStack {
-                                    Text("Set Your Vehicle")
-                                        .font(.title2)
-                                        .bold()
-                                    Spacer()
-                                    Image(systemName: "arrow.right")
-                                        .font(.title)
-                                }
-                                .padding(25)
-                                .background(Color.green)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                            }
-                            .padding()
-                        }
-                    }
                     
+                    btnComponent(
+                        icon: "",
+                        iconInput: "chevron.right",
+                        buttonText: "Set Your Vehicle",
+                        backgroundColor: .green,
+                        textColor: .white,
+                        frameHeight: 70,
+                        textSize: 30,
+                        destination: InputVehiclePage()
+                        
+                    )
                     HStack {
                         Text("Components")
                             .padding(.leading)
@@ -48,44 +41,51 @@ struct SummaryView: View {
                     
                     btnComponent(
                         icon: "oilcan.fill",
-                        iconInput: "arrow.right",
-                        buttonText: "Set your latest oil changes",
+                        iconInput: "chevron.right",
+                        buttonText: "Set Your Lates Oil Change",
                         backgroundColor: .white,
                         textColor: .black,
-                        action: {
-                            print("Back button tapped")
-                        }
+                        frameHeight: 105,
+                        textSize: 15,
+                        destination: ReminderView()
+                        
                     )
                     btnComponent(
-                        icon: "car.2.fill",
-                        iconInput: "arrow.right",
-                        buttonText: "Set your latest tires changes",
+                        icon: "circle.circle.fill",
+                        iconInput: "chevron.right",
+                        buttonText: "Set Your Lates Oil Change",
                         backgroundColor: .white,
                         textColor: .black,
-                        action: {
-                            print("Back button tapped")
-                        }
+                        frameHeight: 105,
+                        textSize: 15,
+                        destination: ReminderView()
+                        
                     )
                     btnComponent(
-                        icon: "brakesignal",
-                        iconInput: "arrow.right",
-                        buttonText: "Set your latest brake changes",
+                        icon: "pedal.brake.fill",
+                        iconInput: "chevron.right",
+                        buttonText: "Set Your Lates Brake Change",
                         backgroundColor: .white,
                         textColor: .black,
-                        action: {
-                            print("Back button tapped")
-                        }
+                        frameHeight: 105,
+                        textSize: 15,
+                        destination: ReminderView()
+                        
                     )
+                    
+                    
                     Spacer()
                 }
                 .navigationTitle("Summary")
-                .navigationBarItems(trailing: Button(action: {
-                    print("Button tapped")
-                }) {
-                    Image(systemName: "book.and.wrench")
-                        .font(.title2)
-                        .foregroundColor(.green)
-                })
+                .navigationBarItems(trailing: NavigationLink(destination: ReminderView()) {
+                                HStack {
+                                    Image(systemName: "book.and.wrench")
+                                        .padding()
+                                        .foregroundColor(.green)
+                                        .font(.title2)
+                                    
+                                }
+                            })
                 
             }
             .tabItem {
@@ -105,41 +105,6 @@ struct SummaryView: View {
     }
 }
 
-struct btnComponent: View {
-    var icon: String
-    var iconInput: String
-    var buttonText: String
-    var backgroundColor: Color
-    var textColor: Color
-    var action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            HStack {
-                VStack {
-                    HStack {
-                        Image(systemName: icon)
-                            .font(.title)
-                        Text(buttonText)
-                            .bold()
-                        Spacer()
-                        Image(systemName: iconInput)
-                            .font(.title)
-                    }
-                }
-                .padding(.top, 30)
-                .padding(.bottom, 30)
-                .padding()
-            }
-            .background(backgroundColor)
-            .foregroundColor(textColor)
-            .cornerRadius(10)
-            .shadow(radius: 4)
-        }
-        .padding(.leading)
-        .padding(.trailing)
-    }
-}
 
 #Preview {
     SummaryView()
