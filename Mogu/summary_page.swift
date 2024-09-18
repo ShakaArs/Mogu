@@ -77,7 +77,7 @@ struct SummaryView: View {
                     Spacer()
                 }
                 .navigationTitle("Summary")
-                .navigationBarItems(trailing: NavigationLink(destination: ReminderView()) {
+                .navigationBarItems(trailing: NavigationLink(destination: HistoryView()) {
                                 HStack {
                                     Image(systemName: "book.and.wrench")
                                         .padding()

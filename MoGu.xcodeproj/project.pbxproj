@@ -16,6 +16,8 @@
 		0425AD1C2C93CF80001E82E4 /* MoGuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425AD1B2C93CF80001E82E4 /* MoGuTests.swift */; };
 		0425AD262C93CF80001E82E4 /* MoGuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425AD252C93CF80001E82E4 /* MoGuUITests.swift */; };
 		0425AD282C93CF80001E82E4 /* MoGuUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425AD272C93CF80001E82E4 /* MoGuUITestsLaunchTests.swift */; };
+		048270222C9A949B00B23417 /* history_page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048270212C9A949B00B23417 /* history_page.swift */; };
+		048270242C9A952100B23417 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048270232C9A952100B23417 /* SwiftUIView.swift */; };
 		04EB97DC2C989B4D00BB4DFC /* SummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB97DB2C989B4D00BB4DFC /* SummaryModel.swift */; };
 		04EB97DE2C989B5F00BB4DFC /* SummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB97DD2C989B5F00BB4DFC /* SummaryViewModel.swift */; };
 		04EB97E02C989B8300BB4DFC /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB97DF2C989B8300BB4DFC /* Button.swift */; };
@@ -56,6 +58,8 @@
 		0425AD212C93CF80001E82E4 /* MoGuUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoGuUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0425AD252C93CF80001E82E4 /* MoGuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoGuUITests.swift; sourceTree = "<group>"; };
 		0425AD272C93CF80001E82E4 /* MoGuUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoGuUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		048270212C9A949B00B23417 /* history_page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = history_page.swift; path = Mogu/Views/history_page.swift; sourceTree = SOURCE_ROOT; };
+		048270232C9A952100B23417 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwiftUIView.swift; path = Mogu/Views/SwiftUIView.swift; sourceTree = SOURCE_ROOT; };
 		04EB97DB2C989B4D00BB4DFC /* SummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SummaryModel.swift; path = Mogu/Models/SummaryModel.swift; sourceTree = SOURCE_ROOT; };
 		04EB97DD2C989B5F00BB4DFC /* SummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SummaryViewModel.swift; path = Mogu/ViewModels/SummaryViewModel.swift; sourceTree = SOURCE_ROOT; };
 		04EB97DF2C989B8300BB4DFC /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Button.swift; path = Mogu/Helper/Button.swift; sourceTree = SOURCE_ROOT; };
@@ -176,6 +180,8 @@
 				04EB97E92C992FB100BB4DFC /* reminder_page.swift */,
 				04EB97E72C992F9800BB4DFC /* summary_page.swift */,
 				04EB97E52C992F4B00BB4DFC /* input_vehicle_page.swift */,
+				048270212C9A949B00B23417 /* history_page.swift */,
+				048270232C9A952100B23417 /* SwiftUIView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -325,7 +331,9 @@
 				04EB97E82C992F9800BB4DFC /* summary_page.swift in Sources */,
 				042251A92C96DD6F00046D7D /* File.swift in Sources */,
 				04EB97DE2C989B5F00BB4DFC /* SummaryViewModel.swift in Sources */,
+				048270222C9A949B00B23417 /* history_page.swift in Sources */,
 				0425AD0D2C93CF7F001E82E4 /* Item.swift in Sources */,
+				048270242C9A952100B23417 /* SwiftUIView.swift in Sources */,
 				04EB97EC2C992FD800BB4DFC /* summary_filled_page.swift in Sources */,
 				0425AD092C93CF7F001E82E4 /* MoGuApp.swift in Sources */,
 				04EB97EA2C992FB100BB4DFC /* reminder_page.swift in Sources */,
