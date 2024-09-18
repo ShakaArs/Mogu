@@ -5,6 +5,7 @@ struct SummaryView: View {
 
     var body: some View {
         TabView {
+            
             NavigationStack{
                 VStack {
                     HStack {
@@ -28,7 +29,7 @@ struct SummaryView: View {
                         textColor: .white,
                         frameHeight: 70,
                         textSize: 30,
-                        destination: ReminderView()
+                        destination: InputVehiclePage()
                         
                     )
                     HStack {
@@ -39,35 +40,35 @@ struct SummaryView: View {
                     }
                     
                     btnComponent(
-                        icon: "star",
+                        icon: "oilcan.fill",
                         iconInput: "chevron.right",
-                        buttonText: "Set Your Vehicle",
+                        buttonText: "Set Your Lates Oil Change",
                         backgroundColor: .white,
                         textColor: .black,
                         frameHeight: 105,
-                        textSize: 20,
+                        textSize: 15,
                         destination: ReminderView()
                         
                     )
                     btnComponent(
-                        icon: "star",
+                        icon: "circle.circle.fill",
                         iconInput: "chevron.right",
-                        buttonText: "Set Your Vehicle",
+                        buttonText: "Set Your Lates Oil Change",
                         backgroundColor: .white,
                         textColor: .black,
                         frameHeight: 105,
-                        textSize: 20,
+                        textSize: 15,
                         destination: ReminderView()
                         
                     )
                     btnComponent(
-                        icon: "star",
+                        icon: "pedal.brake.fill",
                         iconInput: "chevron.right",
-                        buttonText: "Set Your Vehicle",
+                        buttonText: "Set Your Lates Brake Change",
                         backgroundColor: .white,
                         textColor: .black,
                         frameHeight: 105,
-                        textSize: 20,
+                        textSize: 15,
                         destination: ReminderView()
                         
                     )
@@ -76,13 +77,15 @@ struct SummaryView: View {
                     Spacer()
                 }
                 .navigationTitle("Summary")
-                .navigationBarItems(trailing: Button(action: {
-                    print("Button tapped")
-                }) {
-                    Image(systemName: "book.and.wrench")
-                        .font(.title2)
-                        .foregroundColor(.green)
-                })
+                .navigationBarItems(trailing: NavigationLink(destination: ReminderView()) {
+                                HStack {
+                                    Image(systemName: "book.and.wrench")
+                                        .padding()
+                                        .foregroundColor(.green)
+                                        .font(.title2)
+                                    
+                                }
+                            })
                 
             }
             .tabItem {
