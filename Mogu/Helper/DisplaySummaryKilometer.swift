@@ -30,7 +30,7 @@ struct DisplaySummaryKilometer: View{
                     }
 
                     HStack {
-                        Text("\(vehicleViewModel.kilometers ?? 0)")
+                        Text("\(vehicleViewModel.kilometers)")
                             .font(.largeTitle)
                             .fontWeight(.bold)
                         Text("km")

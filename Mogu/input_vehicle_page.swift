@@ -3,9 +3,9 @@ import SwiftUI
 struct InputVehiclePage: View {
     @Environment(\.dismiss) var dismiss
     @State private var selectedType = "Choose your vehicle"
-    @State private var km: Int? = nil
-    @State private var dailyUse: Int? = nil
-    @State private var weeklyUse: Int? = nil
+    @State private var km: String = ""
+    @State private var dailyUse: String = ""
+    @State private var weeklyUse: String = ""
     @ObservedObject var vehicleViewModel: VehicleViewModel
     var onComplete: () -> Void
     
@@ -31,21 +31,42 @@ struct InputVehiclePage: View {
                     HStack {
                         Text("Kilometers")
                         Spacer()
-                        TextField("Your Current Kilometers", value: $km, formatter: NumberFormatter())
+                        TextField("Your Current Kilometers", text: $km)
+                            .onChange(of: km, { oldValue, newValue in
+                                if newValue == "0" {
+                                    km = ""
+                                } else if newValue.hasPrefix("0") {
+                                    km = String(newValue.dropFirst(1))
+                                }
+                            })
                             .multilineTextAlignment(.trailing)
                             .keyboardType(.numberPad)
                     }
                     HStack {
                         Text("Daily Use")
                         Spacer()
-                        TextField("Your Estimated Daily Km", value: $dailyUse, formatter: NumberFormatter())
+                        TextField("Your Estimated Daily Km", text: $dailyUse)
+                            .onChange(of: dailyUse, { oldValue, newValue in
+                                if newValue == "0" {
+                                    dailyUse = ""
+                                } else if newValue.hasPrefix("0") {
+                                    dailyUse = String(newValue.dropFirst(1))
+                                }
+                            })
                             .multilineTextAlignment(.trailing)
                             .keyboardType(.numberPad)
                     }
                     HStack {
                         Text("Weekly Use")
                         Spacer()
-                        TextField("Your Estimated Weekly Km", value: $weeklyUse, formatter: NumberFormatter())
+                        TextField("Your Estimated Weekly Km", text: $weeklyUse)
+                            .onChange(of: weeklyUse, { oldValue, newValue in
+                                if newValue == "0" {
+                                    weeklyUse = ""
+                                } else if newValue.hasPrefix("0") {
+                                    weeklyUse = String(newValue.dropFirst(1))
+                                }
+                            })
                             .multilineTextAlignment(.trailing)
                             .keyboardType(.numberPad)
                     }
