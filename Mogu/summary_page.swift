@@ -49,7 +49,7 @@ struct SummaryView: View {
                     }
                     
                     // Buttons for setting component-related reminders
-                    btnComponent(
+                    CardService(
                         icon: "oilcan.fill",
                         iconInput: "chevron.right",
                         buttonText: "Set Your Latest Oil Change",
@@ -57,10 +57,10 @@ struct SummaryView: View {
                         textColor: .black,
                         frameHeight: 105,
                         textSize: 15,
-                        destination: ReminderView()
+                        serviceType: "oil"
                     )
                     
-                    btnComponent(
+                    CardService(
                         icon: "circle.circle.fill",
                         iconInput: "chevron.right",
                         buttonText: "Set Your Latest Tire Change",
@@ -68,9 +68,9 @@ struct SummaryView: View {
                         textColor: .black,
                         frameHeight: 105,
                         textSize: 15,
-                        destination: ReminderView()
+                        serviceType: "tire"
                     )
-                    btnComponent(
+                    CardService(
                         icon: "pedal.brake.fill",
                         iconInput: "chevron.right",
                         buttonText: "Set Your Latest Brake Change",
@@ -78,7 +78,7 @@ struct SummaryView: View {
                         textColor: .black,
                         frameHeight: 105,
                         textSize: 15,
-                        destination: ReminderView()
+                        serviceType: "brake"
                     )
                     
                     Spacer()

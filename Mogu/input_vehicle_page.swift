@@ -74,7 +74,7 @@ struct InputVehiclePage: View {
                 
                 Section {
                     Button(action: {
-                        vehicleViewModel.createVehicle(motorcycleType: selectedType, kilometers: km, dailyUse: dailyUse, weeklyUse: weeklyUse)
+                        vehicleViewModel.createVehicle(motorcycleType: selectedType, kilometers: km, dailyUse: dailyUse, weeklyUse:  weeklyUse)
                         showAlert = true
                     }) {
                         Text("Submit")
