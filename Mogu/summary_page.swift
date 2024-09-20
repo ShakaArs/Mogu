@@ -74,7 +74,7 @@ struct SummaryView: View {
                         frameHeight: 95,
                         textSize: 15,
                         serviceType: "Tire",
-                        vehicleViewModel: vehicleViewModel.isVehicleDataSet,
+                        vehicleViewModel: vehicleViewModel.isVehicleDataSet
                        
                     )
                     CardService(
