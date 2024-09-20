@@ -35,8 +35,8 @@ struct SummaryView: View {
                             buttonText: "Set Your Vehicle",
                             backgroundColor: .green,
                             textColor: .white,
-                            frameHeight: 70,
-                            textSize: 30,
+                            frameHeight: 60,
+                            textSize: 25,
                             destination: InputVehiclePage(vehicleViewModel: vehicleViewModel) {
                             }
                         )
@@ -57,11 +57,12 @@ struct SummaryView: View {
                         buttonText: "Set Your Latest Oil Change",
                         backgroundColor: .white,
                         textColor: .black,
-                        frameHeight: 105,
+                        frameHeight: 95,
                         textSize: 15,
-                        serviceType: "oil",
+                        serviceType: "Oil",
                         vehicleViewModel: vehicleViewModel.isVehicleDataSet
                         
+
                     )
                     
                     CardService(
@@ -70,10 +71,11 @@ struct SummaryView: View {
                         buttonText: "Set Your Latest Tire Change",
                         backgroundColor: .white,
                         textColor: .black,
-                        frameHeight: 105,
+                        frameHeight: 95,
                         textSize: 15,
-                        serviceType: "tire",
-                        vehicleViewModel: vehicleViewModel.isVehicleDataSet
+                        serviceType: "Tire",
+                        vehicleViewModel: vehicleViewModel.isVehicleDataSet,
+                       
                     )
                     CardService(
                         icon: "pedal.brake.fill",
@@ -81,10 +83,11 @@ struct SummaryView: View {
                         buttonText: "Set Your Latest Brake Change",
                         backgroundColor: .white,
                         textColor: .black,
-                        frameHeight: 105,
+                        frameHeight: 95,
                         textSize: 15,
-                        serviceType: "brake",
+                        serviceType: "Brake",
                         vehicleViewModel: vehicleViewModel.isVehicleDataSet
+                        
                     )
                     
                     Spacer()

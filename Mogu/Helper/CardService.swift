@@ -33,14 +33,24 @@ struct CardService: View {
             
         }) {
             ZStack {
-                RoundedRectangle(cornerRadius: 7)
+                RoundedRectangle(cornerRadius: 15)
                     .fill(backgroundColor)
                     .frame(height: frameHeight)
                     .shadow(radius: 10)
                 HStack {
-                    if let icon = icon {
-                        Image(systemName: icon)
-                            .font(.system(size: 30, weight: .medium))
+//                    if let icon = icon {
+//                        Image(systemName: icon)
+//                            .font(.system(size: 30, weight: .medium))
+//                    }
+                    VStack{
+                        if let icon = icon {
+                            Image(systemName: icon)
+                                .font(.system(size: 30, weight: .medium))
+                        }
+                        Spacer().frame(height: 10)
+                        Text(serviceType)
+                            .font(.system(size: 15 * 0.9))
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     }
                         Text(buttonText)
                             .font(.system(size: textSize, weight: .medium))
