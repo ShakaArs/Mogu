@@ -8,7 +8,7 @@ class VehicleViewModel: ObservableObject {
     @Published var weeklyUse: String = ""
     @Published var isVehicleDataSet: Bool = false // New propertyr
     
-    @Published var serviceViewModel = SeviceViewModel()
+    @Published var serviceViewModel = ServiceViewModel()
 
     // Method to create a new vehicle entry
     func createVehicle(motorcycleType: String, kilometers: String, dailyUse: String, weeklyUse: String) {

@@ -3,6 +3,8 @@ import SwiftUI
 struct SummaryView: View {
     @ObservedObject var vehicleViewModel: VehicleViewModel
     @State private var path = NavigationPath()
+    @ObservedObject var serviceViewModel: ServiceViewModel
+    
     
     var body: some View {
         TabView {
@@ -48,7 +50,7 @@ struct SummaryView: View {
                         Spacer()
                     }
                     
-                    // Buttons for setting component-related reminders
+                    
                     CardService(
                         icon: "oilcan.fill",
                         iconInput: "chevron.right",
@@ -57,7 +59,9 @@ struct SummaryView: View {
                         textColor: .black,
                         frameHeight: 105,
                         textSize: 15,
-                        serviceType: "oil"
+                        serviceType: "oil",
+                        vehicleViewModel: vehicleViewModel.isVehicleDataSet
+                        
                     )
                     
                     CardService(
@@ -68,7 +72,8 @@ struct SummaryView: View {
                         textColor: .black,
                         frameHeight: 105,
                         textSize: 15,
-                        serviceType: "tire"
+                        serviceType: "tire",
+                        vehicleViewModel: vehicleViewModel.isVehicleDataSet
                     )
                     CardService(
                         icon: "pedal.brake.fill",
@@ -78,7 +83,8 @@ struct SummaryView: View {
                         textColor: .black,
                         frameHeight: 105,
                         textSize: 15,
-                        serviceType: "brake"
+                        serviceType: "brake",
+                        vehicleViewModel: vehicleViewModel.isVehicleDataSet
                     )
                     
                     Spacer()
@@ -110,5 +116,5 @@ struct SummaryView: View {
 }
 
 #Preview {
-    SummaryView(vehicleViewModel: VehicleViewModel())
+    SummaryView(vehicleViewModel: VehicleViewModel(),serviceViewModel: ServiceViewModel())
 }

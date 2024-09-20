@@ -61,7 +61,7 @@ struct CardServiceFilled: View {
             }
         }
         .sheet(isPresented: $showingDatePicker) {
-            DatePickerView(serviceType: serviceType, selectedDate: $selectedDate, viewModel: SeviceViewModel())
+            DatePickerView(serviceType: serviceType, selectedDate: $selectedDate, viewModel: ServiceViewModel())
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 3)
