@@ -22,7 +22,7 @@ struct btnComponent<Destination: View>: View {
     var body: some View {
         NavigationLink(destination: destination) {
             ZStack {
-                RoundedRectangle(cornerRadius: 7)
+                RoundedRectangle(cornerRadius: 15)
                     .fill(backgroundColor)
                     .frame(height: frameHeight)
                     .shadow(radius: 10)
