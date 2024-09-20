@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class SeviceViewModel: ObservableObject{
+class ServiceViewModel: ObservableObject{
     @Published var oilChangeDate: Date?
     @Published var tireChangeDate: Date?
     @Published var brakeChangeDate: Date?

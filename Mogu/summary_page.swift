@@ -3,6 +3,8 @@ import SwiftUI
 struct SummaryView: View {
     @ObservedObject var vehicleViewModel: VehicleViewModel
     @State private var path = NavigationPath()
+    @ObservedObject var serviceViewModel: ServiceViewModel
+    
     
     var body: some View {
         TabView {
@@ -33,8 +35,8 @@ struct SummaryView: View {
                             buttonText: "Set Your Vehicle",
                             backgroundColor: .green,
                             textColor: .white,
-                            frameHeight: 70,
-                            textSize: 30,
+                            frameHeight: 60,
+                            textSize: 25,
                             destination: InputVehiclePage(vehicleViewModel: vehicleViewModel) {
                             }
                         )
@@ -48,16 +50,19 @@ struct SummaryView: View {
                         Spacer()
                     }
                     
-                    // Buttons for setting component-related reminders
+                    
                     CardService(
                         icon: "oilcan.fill",
                         iconInput: "chevron.right",
                         buttonText: "Set Your Latest Oil Change",
                         backgroundColor: .white,
                         textColor: .black,
-                        frameHeight: 105,
+                        frameHeight: 95,
                         textSize: 15,
-                        serviceType: "oil"
+                        serviceType: "Oil",
+                        vehicleViewModel: vehicleViewModel.isVehicleDataSet
+                        
+
                     )
                     
                     CardService(
@@ -66,9 +71,11 @@ struct SummaryView: View {
                         buttonText: "Set Your Latest Tire Change",
                         backgroundColor: .white,
                         textColor: .black,
-                        frameHeight: 105,
+                        frameHeight: 95,
                         textSize: 15,
-                        serviceType: "tire"
+                        serviceType: "Tire",
+                        vehicleViewModel: vehicleViewModel.isVehicleDataSet
+                       
                     )
                     CardService(
                         icon: "pedal.brake.fill",
@@ -76,9 +83,11 @@ struct SummaryView: View {
                         buttonText: "Set Your Latest Brake Change",
                         backgroundColor: .white,
                         textColor: .black,
-                        frameHeight: 105,
+                        frameHeight: 95,
                         textSize: 15,
-                        serviceType: "brake"
+                        serviceType: "Brake",
+                        vehicleViewModel: vehicleViewModel.isVehicleDataSet
+                        
                     )
                     
                     Spacer()
@@ -110,5 +119,5 @@ struct SummaryView: View {
 }
 
 #Preview {
-    SummaryView(vehicleViewModel: VehicleViewModel())
+    SummaryView(vehicleViewModel: VehicleViewModel(),serviceViewModel: ServiceViewModel())
 }

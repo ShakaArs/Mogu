@@ -16,23 +16,41 @@ struct CardService: View {
     var frameHeight: CGFloat
     var textSize: CGFloat
     var serviceType: String
+    @State private var showAlert = false
+    var vehicleViewModel: Bool=false
     
     @State private var showingDatePicker = false
     @State private var selectedDate = Date()
     
     var body: some View {
         Button(action: {
-            showingDatePicker.toggle()
+            if vehicleViewModel{
+                showAlert=false
+                showingDatePicker.toggle()
+            } else {
+                showAlert = true
+            }
+            
         }) {
             ZStack {
-                RoundedRectangle(cornerRadius: 7)
+                RoundedRectangle(cornerRadius: 15)
                     .fill(backgroundColor)
                     .frame(height: frameHeight)
                     .shadow(radius: 10)
                 HStack {
-                    if let icon = icon {
-                        Image(systemName: icon)
-                            .font(.system(size: 30, weight: .medium))
+//                    if let icon = icon {
+//                        Image(systemName: icon)
+//                            .font(.system(size: 30, weight: .medium))
+//                    }
+                    VStack{
+                        if let icon = icon {
+                            Image(systemName: icon)
+                                .font(.system(size: 30, weight: .medium))
+                        }
+                        Spacer().frame(height: 10)
+                        Text(serviceType)
+                            .font(.system(size: 15 * 0.9))
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                     }
                         Text(buttonText)
                             .font(.system(size: textSize, weight: .medium))
@@ -45,9 +63,18 @@ struct CardService: View {
                         .padding()
                     }
                 }
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("Belum"),
+                message: Text("Data kendaraan belum diatur."),
+                dismissButton: .default(Text("OK"))
+            )
+    }
                 .sheet(isPresented: $showingDatePicker) {
-                DatePickerView(serviceType: serviceType, selectedDate: $selectedDate, viewModel: SeviceViewModel())
+                DatePickerView(serviceType: serviceType, selectedDate: $selectedDate, viewModel: ServiceViewModel())
+                    
             }
+                
         .padding(.horizontal, 20)
         .padding(.vertical, 3)
     }
@@ -56,7 +83,7 @@ struct DatePickerView: View {
     @Environment(\.presentationMode) var presentationMode
     var serviceType: String
     @Binding var selectedDate: Date
-    @ObservedObject var viewModel: SeviceViewModel
+    @ObservedObject var viewModel: ServiceViewModel
     
     var body: some View {
         VStack {
