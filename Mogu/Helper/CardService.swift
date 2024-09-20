@@ -25,7 +25,7 @@ struct CardService: View {
             showingDatePicker.toggle()
         }) {
             ZStack {
-                RoundedRectangle(cornerRadius: 7)
+                RoundedRectangle(cornerRadius: 15)
                     .fill(backgroundColor)
                     .frame(height: frameHeight)
                     .shadow(radius: 10)
