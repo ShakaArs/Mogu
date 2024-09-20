@@ -18,6 +18,7 @@ struct SummaryView: View {
                         Text("Time")
                             .foregroundColor(.green)
                             .font(.title2)
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         Text("to service ?")
                             .font(.title2)
                         Spacer()
