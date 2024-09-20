@@ -2,17 +2,19 @@ import SwiftUI
 
 struct InputVehiclePage: View {
     @Environment(\.dismiss) var dismiss
-    @State private var selectedType = "Choose your vehicle"
+    @State private var selectedType: String = "Choose your vehicle"
     @State private var km: String = ""
     @State private var dailyUse: String = ""
     @State private var weeklyUse: String = ""
     @ObservedObject var vehicleViewModel: VehicleViewModel
     var onComplete: () -> Void
-    
+    @State private var errorMessage: String?
     let vehicleTypes = ["Manual", "Matic", "Sport"]
-    
+    @State private var successMessage: String?
     @State private var showAlert = false
+    @State private var alertMessage: String = ""
     @State private var navigateToSummary = false
+    @State private var showSuccessAlert = false
     
     var body: some View {
         NavigationStack {
@@ -74,8 +76,7 @@ struct InputVehiclePage: View {
                 
                 Section {
                     Button(action: {
-                        vehicleViewModel.createVehicle(motorcycleType: selectedType, kilometers: km, dailyUse: dailyUse, weeklyUse:  weeklyUse)
-                        showAlert = true
+                        validateInputs()
                     }) {
                         Text("Submit")
                             .frame(maxWidth: .infinity)
@@ -92,18 +93,40 @@ struct InputVehiclePage: View {
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Input Vehicle")
             .alert(isPresented: $showAlert) {
-                Alert(
-                    title: Text("Submit Success"),
-                    message: Text("Your data has been submitted successfully."),
-                    dismissButton: .default(Text("OK")) {
-                        onComplete()
-                        dismiss()
-                    }
-                )
-            }
+                            Alert(title: Text(alertMessage),
+                                  message: Text(alertMessage ?? "Unknown error"),
+                                  dismissButton: .default(Text("OK")) {
+                                      if alertMessage == "Vehicle data submitted successfully!" {
+                                          dismiss()
+                                      }
+                                  })
+                        }
+        
+            
         }
     }
+    private func validateInputs() {
+            alertMessage = ""
+               
+               if km.isEmpty || dailyUse.isEmpty || weeklyUse.isEmpty || selectedType == "Choose your vehicle" {
+                   alertMessage = "Please fill in all fields."
+               } else if Int(km) == nil || Int(dailyUse) == nil || Int(weeklyUse) == nil {
+                   alertMessage = "Kilometers and usage must be valid numbers."
+               } else {
+                   vehicleViewModel.createVehicle(motorcycleType: selectedType, kilometers: km, dailyUse: dailyUse, weeklyUse:  weeklyUse)
+                   alertMessage = "Vehicle data submitted successfully!"
+                   onComplete()
+               }
+               
+               if alertMessage != "" {
+                   showAlert = true
+               }
+           }
+        
+
 }
+
+
 
 struct InputVehiclePage_Previews: PreviewProvider {
     static var previews: some View {
