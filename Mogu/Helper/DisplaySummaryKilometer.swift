@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct DisplaySummaryKilometer: View{
+    
     @ObservedObject var vehicleViewModel: VehicleViewModel
     var body: some View {
         VStack(alignment: .leading) {
                     HStack {
-                        Text(vehicleViewModel.motorcyleType)
+                        Text(vehicleViewModel.motorcycleType)
                             .foregroundColor(.green)
                             .fontWeight(.bold)
                             .font(.title2)

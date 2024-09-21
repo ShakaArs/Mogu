@@ -1,12 +1,13 @@
 import SwiftUI
 
 struct InputVehiclePage: View {
+    @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) var dismiss
     @State private var selectedType: String = "Choose your vehicle"
     @State private var km: String = ""
     @State private var dailyUse: String = ""
     @State private var weeklyUse: String = ""
-    @ObservedObject var vehicleViewModel: VehicleViewModel
+    @StateObject var vehicleViewModel: VehicleViewModel
     var onComplete: () -> Void
     @State private var errorMessage: String?
     let vehicleTypes = ["Manual", "Matic", "Sport"]
@@ -113,7 +114,11 @@ struct InputVehiclePage: View {
                } else if Int(km) == nil || Int(dailyUse) == nil || Int(weeklyUse) == nil {
                    alertMessage = "Kilometers and usage must be valid numbers."
                } else {
-                   vehicleViewModel.createVehicle(motorcycleType: selectedType, kilometers: km, dailyUse: dailyUse, weeklyUse:  weeklyUse)
+                   vehicleViewModel.motorcycleType = selectedType
+                   vehicleViewModel.kilometers = km
+                   vehicleViewModel.dailyUse = dailyUse
+                   vehicleViewModel.weeklyUse = weeklyUse
+                   vehicleViewModel.createVehicle(modelContext: modelContext)
                    alertMessage = "Vehicle data submitted successfully!"
                    onComplete()
                }

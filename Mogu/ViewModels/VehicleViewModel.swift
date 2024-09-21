@@ -1,22 +1,32 @@
 import Foundation
+import SwiftData
+
 
 class VehicleViewModel: ObservableObject {
     // Properties that you want to store
-    @Published var motorcyleType: String = "Unknown"
+    @Published var motorcycleType: String = "Unknown"
     @Published var kilometers: String = ""
     @Published var dailyUse: String = ""
     @Published var weeklyUse: String = ""
-    @Published var isVehicleDataSet: Bool = false // New propertyr
+    @Published var isVehicleDataSet: Bool = false
     
-    @Published var serviceViewModel = ServiceViewModel()
-
     // Method to create a new vehicle entry
-    func createVehicle(motorcycleType: String, kilometers: String, dailyUse: String, weeklyUse: String) {
-        self.motorcyleType = motorcycleType
-        self.kilometers = kilometers
-        self.dailyUse = dailyUse
-        self.weeklyUse = weeklyUse
-        self.isVehicleDataSet = true // Set to true after data is created
+    func createVehicle(modelContext: ModelContext) {
+        let newVehicle = VehicleModel(
+            motorcycleType: motorcycleType,
+            kilometers: kilometers,
+            dailyUse: dailyUse,
+            weeklyUse: weeklyUse,
+            isVehicleDataSet: true
+        )
+        modelContext.insert(newVehicle)
+        do{
+            try modelContext.save()
+            isVehicleDataSet = true
+        } catch {
+            print("Failed to save vehicle data: \(error.localizedDescription)")
+            isVehicleDataSet = false
+        }
     }
     
     func updateKilometers() {

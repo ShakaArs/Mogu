@@ -6,12 +6,22 @@
 //
 
 import Foundation
+import SwiftData
 
-struct VehicleModel{
+@Model
+class VehicleModel {
     var motorcycleType: String
-    var kilometers: Int?
-    var dailyUse: Int?
-    var weeklyUse: Int?
-    
-    
+    var kilometers: String
+    var dailyUse: String
+    var weeklyUse: String
+    var isVehicleDataSet: Bool
+
+    // Default initializer
+    init(motorcycleType: String = "Unknown", kilometers: String = "", dailyUse: String = "", weeklyUse: String = "", isVehicleDataSet: Bool = false) {
+        self.motorcycleType = motorcycleType
+        self.kilometers = kilometers
+        self.dailyUse = dailyUse
+        self.weeklyUse = weeklyUse
+        self.isVehicleDataSet = isVehicleDataSet
+    }
 }
