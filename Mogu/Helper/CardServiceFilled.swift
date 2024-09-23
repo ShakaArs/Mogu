@@ -38,7 +38,7 @@ struct CardServiceFilled: View {
                         }
                         VStack{
                             Text("Next Change: \(formattedDate(nextChange))")
-                                .font(.system(size: 15))
+                                .font(.system(size: 14))
                                 .foregroundColor(.black)
                                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                             Spacer().frame(height: 20)
@@ -46,7 +46,7 @@ struct CardServiceFilled: View {
                                 .font(.system(size: 15 * 0.7))
                                 .foregroundColor(.gray)
                             
-                            Text("Range Kilometers: 2500-5000")
+                            Text("Range Kilometers:\(buttonText)")
                                 .font(.system(size: 15 * 0.7))
                                 .foregroundColor(.gray)
                                 .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)

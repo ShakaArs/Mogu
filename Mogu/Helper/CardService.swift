@@ -19,13 +19,13 @@ struct CardService: View {
     var serviceType: String
     @State private var showAlert = false
     var vehicleViewModel: Bool=false
-    
+    @Query var vehicleModel: [VehicleModel]
     @State private var showingDatePicker = false
     @State private var selectedDate = Date()
     
     var body: some View {
         Button(action: {
-            if vehicleViewModel{
+            if !vehicleModel.isEmpty{
                 showAlert=false
                 showingDatePicker.toggle()
             } else {
@@ -90,6 +90,7 @@ struct DatePickerView: View {
     @ObservedObject var viewModelVehicle: VehicleViewModel
     @Query var vehicleModel: [VehicleModel]
     
+    
     var body: some View {
         VStack {
             Text("Set your latest \(serviceType) change")
@@ -119,14 +120,27 @@ struct DatePickerView: View {
                         return
                     }
                     
-                    // Update service details
                     viewModelService.updateServiceDate(for: serviceType, with: selectedDate)
                     viewModelService.serviceType = serviceType
                     viewModelService.lastDateService = selectedDate
                     
-                    // Calculate kilometers
-                    let minKilometers = kilometers + 2500
-                    let maxKilometers = kilometers + 5000
+                    var minKilometers = 0
+                    var maxKilometers = 0
+                    
+                    if(serviceType == "Oil"){
+                        minKilometers = kilometers + viewModelService.oilWarningThreshold
+                        maxKilometers = kilometers + viewModelService.maxKilometerForOil
+                    }
+                    else if(serviceType == "Tire"){
+                        minKilometers = kilometers + viewModelService.tireWarningThreshold
+                        maxKilometers = kilometers + viewModelService.maxKilometerForTire
+                    }
+                    else if (serviceType == "Brake"){
+                        minKilometers = kilometers + viewModelService.brakeWarningThreshold
+                        maxKilometers = kilometers + viewModelService.maxKilometerForBrake
+                    }
+                    
+                    
                     viewModelService.kilometersMin = String(minKilometers)
                     viewModelService.kilometersMax = String(maxKilometers)
                     
