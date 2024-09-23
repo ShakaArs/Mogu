@@ -69,7 +69,7 @@ struct CardServiceFilled: View {
             }
         }
         .sheet(isPresented: $showingDatePicker) {
-            DatePickerView(serviceType: serviceType, selectedDate: $selectedDate, viewModel: ServiceViewModel())
+            DatePickerView(serviceType: serviceType, selectedDate: $selectedDate, viewModelService: ServiceViewModel() , viewModelVehicle: VehicleViewModel())
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 3)
@@ -93,6 +93,6 @@ struct CardServiceFilled_Previews: PreviewProvider {
 //                          textSize: 15,
                           serviceType: "Oil",
                           nextChange: Date(),
-                          lastChange: Date().addingTimeInterval(-30 * 24 * 60 * 60)) // Example dates
+                          lastChange: Date() )// Example dates
     }
 }

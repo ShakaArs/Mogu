@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct CardService: View {
     var icon: String?
@@ -71,7 +72,7 @@ struct CardService: View {
             )
     }
                 .sheet(isPresented: $showingDatePicker) {
-                DatePickerView(serviceType: serviceType, selectedDate: $selectedDate, viewModel: ServiceViewModel())
+                    DatePickerView(serviceType: serviceType, selectedDate: $selectedDate, viewModelService: ServiceViewModel(), viewModelVehicle: VehicleViewModel())
                     
             }
                 
@@ -81,9 +82,13 @@ struct CardService: View {
 }
 struct DatePickerView: View {
     @Environment(\.presentationMode) var presentationMode
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) var dismiss
     var serviceType: String
     @Binding var selectedDate: Date
-    @ObservedObject var viewModel: ServiceViewModel
+    @ObservedObject var viewModelService: ServiceViewModel
+    @ObservedObject var viewModelVehicle: VehicleViewModel
+    @Query var vehicleModel: [VehicleModel]
     
     var body: some View {
         VStack {
@@ -105,14 +110,44 @@ struct DatePickerView: View {
                 
                 Spacer()
                 
-                Button("Done") {
-                    viewModel.updateServiceDate(for: serviceType, with: selectedDate)
-                    print("Saved date for \(serviceType): \(selectedDate)")
-                    presentationMode.wrappedValue.dismiss()
+                Button(action: {
+                    print("Button pressed")
+                    
+                    guard let kilometersString = vehicleModel.first?.kilometers,
+                          let kilometers = Int(kilometersString) else {
+                        print("Invalid kilometers")
+                        return
+                    }
+                    
+                    // Update service details
+                    viewModelService.updateServiceDate(for: serviceType, with: selectedDate)
+                    viewModelService.serviceType = serviceType
+                    viewModelService.lastDateService = selectedDate
+                    
+                    // Calculate kilometers
+                    let minKilometers = kilometers + 2500
+                    let maxKilometers = kilometers + 5000
+                    viewModelService.kilometersMin = String(minKilometers)
+                    viewModelService.kilometersMax = String(maxKilometers)
+                    
+                    viewModelService.maxDateService = Calendar.current.date(byAdding: .day, value: -30, to: selectedDate) ?? selectedDate
+                    
+                    
+                    viewModelService.createService(modelContext: modelContext)
+                    print(viewModelService.kilometersMax, viewModelService.kilometersMin)
+                    dismiss()
+
+                    // Dismiss the view
+//                    DispatchQueue.main.async {
+//                        dismiss()
+//                    }
+                }) {
+                    Text("Done")
                 }
                 .padding()
                 .foregroundColor(.green)
                 .font(.headline)
+
             }
         }
     }

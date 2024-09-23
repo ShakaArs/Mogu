@@ -6,11 +6,18 @@
 //
 
 import SwiftUI
+import SwiftData
 
 class ServiceViewModel: ObservableObject{
     @Published var oilChangeDate: Date?
     @Published var tireChangeDate: Date?
     @Published var brakeChangeDate: Date?
+    @Published var serviceType: String = ""
+    @Published var kilometersMin: String = ""
+    @Published var kilometersMax: String = ""
+    @Published var lastDateService: Date = Date()
+    @Published var maxDateService: Date = Date()
+    @Published var isServiceDataSet: Bool = false
     
     //Maximum Kilometer
     let maxKilometerForOil = 5000
@@ -21,6 +28,25 @@ class ServiceViewModel: ObservableObject{
     let oilWarningThreshold = 2500
     let tireWarningThreshold = 10000
     let brakeWarningThreshold = 10000
+    
+    func createService(modelContext: ModelContext) {
+        let newService = ServiceModel(
+            serviceType: serviceType,
+            kilometersMin: kilometersMin,
+            kilometersMax: kilometersMax,
+            lastDateService: lastDateService,
+            maxDateService: maxDateService,
+            isServiceDataSet: true
+        )
+        modelContext.insert(newService)
+        do{
+            try modelContext.save()
+            isServiceDataSet = true
+        } catch {
+            print("Failed to save vehicle data: \(error.localizedDescription)")
+            isServiceDataSet = false
+        }
+    }
     
     func updateServiceDate(for serviceType: String, with date: Date) {
         switch serviceType {

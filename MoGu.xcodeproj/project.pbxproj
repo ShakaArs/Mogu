@@ -16,6 +16,7 @@
 		0425AD1C2C93CF80001E82E4 /* MoGuTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425AD1B2C93CF80001E82E4 /* MoGuTests.swift */; };
 		0425AD262C93CF80001E82E4 /* MoGuUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425AD252C93CF80001E82E4 /* MoGuUITests.swift */; };
 		0425AD282C93CF80001E82E4 /* MoGuUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0425AD272C93CF80001E82E4 /* MoGuUITestsLaunchTests.swift */; };
+		0459AB522CA0FCE300606170 /* ServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0459AB512CA0FCE300606170 /* ServiceModel.swift */; };
 		048270222C9A949B00B23417 /* history_page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048270212C9A949B00B23417 /* history_page.swift */; };
 		048270242C9A952100B23417 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048270232C9A952100B23417 /* SplashScreen.swift */; };
 		04EB97DC2C989B4D00BB4DFC /* VehicleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB97DB2C989B4D00BB4DFC /* VehicleModel.swift */; };
@@ -60,6 +61,7 @@
 		0425AD212C93CF80001E82E4 /* MoGuUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoGuUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0425AD252C93CF80001E82E4 /* MoGuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoGuUITests.swift; sourceTree = "<group>"; };
 		0425AD272C93CF80001E82E4 /* MoGuUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoGuUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0459AB512CA0FCE300606170 /* ServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceModel.swift; sourceTree = "<group>"; };
 		048270212C9A949B00B23417 /* history_page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = history_page.swift; path = Mogu/Views/history_page.swift; sourceTree = SOURCE_ROOT; };
 		048270232C9A952100B23417 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SplashScreen.swift; path = Mogu/Views/SplashScreen.swift; sourceTree = SOURCE_ROOT; };
 		04EB97DB2C989B4D00BB4DFC /* VehicleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VehicleModel.swift; path = Mogu/Models/VehicleModel.swift; sourceTree = SOURCE_ROOT; };
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				04EB97DB2C989B4D00BB4DFC /* VehicleModel.swift */,
+				0459AB512CA0FCE300606170 /* ServiceModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0459AB522CA0FCE300606170 /* ServiceModel.swift in Sources */,
 				04EB97F92C9A8A5200BB4DFC /* DisplaySummaryKilometer.swift in Sources */,
 				04FB7D1E2C9C82E6006BB931 /* CardService.swift in Sources */,
 				04EB97F62C9A89C600BB4DFC /* input_vehicle_page.swift in Sources */,

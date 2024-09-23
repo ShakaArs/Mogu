@@ -12,6 +12,7 @@ class VehicleViewModel: ObservableObject {
     
     // Method to create a new vehicle entry
     func createVehicle(modelContext: ModelContext) {
+        print(motorcycleType,kilometers,dailyUse,weeklyUse,isVehicleDataSet)
         let newVehicle = VehicleModel(
             motorcycleType: motorcycleType,
             kilometers: kilometers,

@@ -6,14 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct DisplaySummaryKilometer: View{
-    
-    @ObservedObject var vehicleViewModel: VehicleViewModel
-    var body: some View {
+    @Query var vehicleModel : [VehicleModel]
+        var body: some View {
         VStack(alignment: .leading) {
                     HStack {
-                        Text(vehicleViewModel.motorcycleType)
+                        Text(vehicleModel.first?.motorcycleType ?? "")
                             .foregroundColor(.green)
                             .fontWeight(.bold)
                             .font(.title2)
@@ -31,7 +31,7 @@ struct DisplaySummaryKilometer: View{
                     }
 
                     HStack {
-                        Text("\(vehicleViewModel.kilometers)")
+                        Text(vehicleModel.first?.kilometers ?? "")
                             .font(.largeTitle)
                             .fontWeight(.bold)
                         Text("km")
@@ -48,5 +48,5 @@ struct DisplaySummaryKilometer: View{
 }
 
 #Preview {
-    DisplaySummaryKilometer(vehicleViewModel: VehicleViewModel())
+    DisplaySummaryKilometer()
 }

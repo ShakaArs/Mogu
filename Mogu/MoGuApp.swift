@@ -13,7 +13,7 @@ struct MoGuApp: App {
     var body: some Scene {
         WindowGroup {
             SplashScreen()
-                .modelContainer(for: VehicleModel.self)
+                .modelContainer(for: [VehicleModel.self,ServiceModel.self])
 //            ReminderView()
         }
         

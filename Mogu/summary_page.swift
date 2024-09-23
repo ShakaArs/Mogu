@@ -1,9 +1,11 @@
 import SwiftUI
+import SwiftData
 
 struct SummaryView: View {
     @ObservedObject var vehicleViewModel: VehicleViewModel
     @State private var path = NavigationPath()
     @ObservedObject var serviceViewModel: ServiceViewModel
+    @Query var vehicleModel : [VehicleModel]
     
     
     var body: some View {
@@ -25,8 +27,8 @@ struct SummaryView: View {
                     }
                     .padding(.top)
 
-                    if vehicleViewModel.isVehicleDataSet {
-                        DisplaySummaryKilometer(vehicleViewModel: vehicleViewModel)
+                    if !vehicleModel.isEmpty {
+                        DisplaySummaryKilometer()
                             .padding(.horizontal)
 
                     } else {
@@ -51,20 +53,24 @@ struct SummaryView: View {
                         Spacer()
                     }
                     
-                    
-                    CardService(
-                        icon: "oilcan.fill",
-                        iconInput: "chevron.right",
-                        buttonText: "Set Your Latest Oil Change",
-                        backgroundColor: .white,
-                        textColor: .black,
-                        frameHeight: 95,
-                        textSize: 15,
-                        serviceType: "Oil",
-                        vehicleViewModel: vehicleViewModel.isVehicleDataSet
+                    if ServiceViewModel().isServiceDataSet{
                         
+                    }
+                    else{
+                        CardService(
+                            icon: "oilcan.fill",
+                            iconInput: "chevron.right",
+                            buttonText: "Set Your Latest Oil Change",
+                            backgroundColor: .white,
+                            textColor: .black,
+                            frameHeight: 95,
+                            textSize: 15,
+                            serviceType: "Oil",
+                            vehicleViewModel: vehicleViewModel.isVehicleDataSet
+                            
 
-                    )
+                        )
+                    }
                     
                     CardService(
                         icon: "circle.circle.fill",
