@@ -30,6 +30,29 @@ class VehicleViewModel: ObservableObject {
         }
     }
     
+    func loadVehicleData(from vehicle: VehicleModel) {
+            motorcycleType = vehicle.motorcycleType
+            kilometers = vehicle.kilometers
+            dailyUse = vehicle.dailyUse
+            weeklyUse = vehicle.weeklyUse
+            isVehicleDataSet = true
+        }
+    
+    func updateInput(vehicle: VehicleModel, modelContext: ModelContext) {
+            // Update the properties of the existing vehicle
+//            vehicle.motorcycleType = motorcycleType
+            vehicle.kilometers = kilometers
+            vehicle.dailyUse = dailyUse
+            vehicle.weeklyUse = weeklyUse
+            
+            do {
+                try modelContext.save()  // Save the updated vehicle
+                print("Vehicle updated successfully")
+            } catch {
+                print("Failed to update vehicle data: \(error.localizedDescription)")
+            }
+        }
+    
     func updateKilometers() {
         let currentKilometers = Int(kilometers) ?? 0
         let dailyUsage = Int(dailyUse) ?? 0

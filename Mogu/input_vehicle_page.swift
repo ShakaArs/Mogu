@@ -135,7 +135,9 @@ struct InputVehiclePage: View {
 
 struct InputVehiclePage_Previews: PreviewProvider {
     static var previews: some View {
-        InputVehiclePage(vehicleViewModel: VehicleViewModel()) {
+        InputVehiclePage(
+            vehicleViewModel: VehicleViewModel()
+        ) {
             // Completion action
         }
     }
