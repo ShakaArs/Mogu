@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import UserNotifications
 
 struct SummaryView: View {
     @ObservedObject var vehicleViewModel: VehicleViewModel
@@ -25,6 +26,7 @@ struct SummaryView: View {
                         Spacer()
                     }
                     .padding(.top)
+                    
                     if !vehicleModel.isEmpty {
                         DisplaySummaryKilometer()
                             .padding(.horizontal)
@@ -32,7 +34,7 @@ struct SummaryView: View {
                         noVehicleView
                     }
                     
-                    HStack{
+                    HStack {
                         Text("Components")
                             .padding(.leading)
                             .font(.title2)
@@ -86,13 +88,16 @@ struct SummaryView: View {
                         .foregroundColor(.green)
                         .font(.title2)
                 })
+                .onAppear {
+                    requestNotificationPermission()
+                }
             }
             .tabItem {
                 Image(systemName: "engine.combustion.fill")
                 Text("Summary")
             }
             
-            NavigationView {
+            NavigationStack {
                 ReminderView()
             }
             .tabItem {
@@ -101,7 +106,6 @@ struct SummaryView: View {
             }
         }
     }
-    
     
     private var noVehicleView: some View {
         btnComponent(
@@ -118,6 +122,7 @@ struct SummaryView: View {
     
     private func servicePlaceholderView(serviceType: String) -> some View {
         let isServiceFilled = serviceModel.contains(where: { $0.serviceType == serviceType })
+        
         if !isServiceFilled {
             switch serviceType {
             case "Oil":
@@ -159,8 +164,25 @@ struct SummaryView: View {
             default:
                 return AnyView(EmptyView())
             }
+        } else {
+            return AnyView(EmptyView())
         }
-        return AnyView(EmptyView())
+    }
+    
+    func requestNotificationPermission() {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            if settings.authorizationStatus == .notDetermined {
+                UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+                    if granted {
+                        print("Notification permission granted.")
+                    } else if let error = error {
+                        print("Notification permission denied: \(error.localizedDescription)")
+                    }
+                }
+            } else {
+                print("Notification permission already handled: \(settings.authorizationStatus.rawValue)")
+            }
+        }
     }
 }
 

@@ -8,33 +8,21 @@ final class MoGuApp: NSObject, App, UNUserNotificationCenterDelegate {
     // Required initializer
     override init() {
         super.init() // Call the superclass initializer
-        requestNotificationPermission()
         UNUserNotificationCenter.current().delegate = self
         
-        // Schedule notification for today at 21:30
+        // Schedule notification for today at 00:17 (adjust as needed)
         scheduleNotificationForToday()
     }
     
-    // Request notification permission
-    func requestNotificationPermission() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-            if granted {
-                print("Notification permission granted.")
-            } else if let error = error {
-                print("Notification permission denied: \(error.localizedDescription)")
-            }
-        }
-    }
-    
-    // Schedule a notification for today at 21:30
+    // Schedule a notification for today at 00:17 (or other time)
     func scheduleNotificationForToday() {
         let currentDate = Date()
         let calendar = Calendar.current
         
-        // Create the target date for today at 21:30
+        // Create the target date for today at 00:17
         var dateComponents = calendar.dateComponents([.year, .month, .day], from: currentDate)
-        dateComponents.hour = 21
-        dateComponents.minute = 29
+        dateComponents.hour = 0
+        dateComponents.minute = 25
         
         if let triggerDate = calendar.date(from: dateComponents) {
             scheduleNotification(for: "Oil", currentKilometers: 5000, triggerDate: triggerDate)
@@ -46,7 +34,9 @@ final class MoGuApp: NSObject, App, UNUserNotificationCenterDelegate {
         let content = UNMutableNotificationContent()
         content.title = "Warning: \(service) change"
         content.body = "The \(service) change should be scheduled soon. Current kilometers: \(currentKilometers)"
-        content.sound = .default
+        
+        // Directly assign the custom sound "brom_brom.caf"
+        content.sound = UNNotificationSound(named: UNNotificationSoundName("brom_brom.caf"))
 
         // Set up the trigger date components
         let triggerComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: triggerDate)

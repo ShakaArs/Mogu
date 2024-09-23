@@ -27,6 +27,8 @@
 		04EB97EA2C992FB100BB4DFC /* reminder_page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB97E92C992FB100BB4DFC /* reminder_page.swift */; };
 		04EB97F62C9A89C600BB4DFC /* input_vehicle_page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB97E52C992F4B00BB4DFC /* input_vehicle_page.swift */; };
 		04EB97F92C9A8A5200BB4DFC /* DisplaySummaryKilometer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EB97F82C9A8A5200BB4DFC /* DisplaySummaryKilometer.swift */; };
+		04ECF0D02CA1D71C00D07F28 /* brom_brom.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04ECF0CE2CA1D71C00D07F28 /* brom_brom.mp3 */; };
+		04ECF0D22CA1DB3300D07F28 /* brom_brom.caf in Resources */ = {isa = PBXBuildFile; fileRef = 04ECF0D12CA1DB3300D07F28 /* brom_brom.caf */; };
 		04FB7D1E2C9C82E6006BB931 /* CardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FB7D1D2C9C82E6006BB931 /* CardService.swift */; };
 		04FB7D202C9C89A2006BB931 /* ServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FB7D1F2C9C89A2006BB931 /* ServiceViewModel.swift */; };
 		04FB7D222C9C903E006BB931 /* CardServiceFilled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FB7D212C9C903E006BB931 /* CardServiceFilled.swift */; };
@@ -73,6 +75,8 @@
 		04EB97E72C992F9800BB4DFC /* summary_page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = summary_page.swift; path = Mogu/summary_page.swift; sourceTree = SOURCE_ROOT; };
 		04EB97E92C992FB100BB4DFC /* reminder_page.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = reminder_page.swift; path = Mogu/reminder_page.swift; sourceTree = SOURCE_ROOT; };
 		04EB97F82C9A8A5200BB4DFC /* DisplaySummaryKilometer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DisplaySummaryKilometer.swift; path = Mogu/Helper/DisplaySummaryKilometer.swift; sourceTree = SOURCE_ROOT; };
+		04ECF0CE2CA1D71C00D07F28 /* brom_brom.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = brom_brom.mp3; sourceTree = "<group>"; };
+		04ECF0D12CA1DB3300D07F28 /* brom_brom.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = brom_brom.caf; sourceTree = "<group>"; };
 		04FB7D1D2C9C82E6006BB931 /* CardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardService.swift; path = Mogu/Helper/CardService.swift; sourceTree = SOURCE_ROOT; };
 		04FB7D1F2C9C89A2006BB931 /* ServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ServiceViewModel.swift; path = Mogu/ViewModels/ServiceViewModel.swift; sourceTree = SOURCE_ROOT; };
 		04FB7D212C9C903E006BB931 /* CardServiceFilled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CardServiceFilled.swift; path = Mogu/Helper/CardServiceFilled.swift; sourceTree = SOURCE_ROOT; };
@@ -126,6 +130,7 @@
 		0425AD072C93CF7F001E82E4 /* MoGu */ = {
 			isa = PBXGroup;
 			children = (
+				04ECF0CF2CA1D71C00D07F28 /* Sounds */,
 				04EB97D12C98851900BB4DFC /* Views */,
 				04EB97D22C98852200BB4DFC /* Helper */,
 				04EB97D02C98850E00BB4DFC /* ViewModels */,
@@ -205,6 +210,15 @@
 				04FB7D212C9C903E006BB931 /* CardServiceFilled.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		04ECF0CF2CA1D71C00D07F28 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				04ECF0D12CA1DB3300D07F28 /* brom_brom.caf */,
+				04ECF0CE2CA1D71C00D07F28 /* brom_brom.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,6 +325,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04ECF0D22CA1DB3300D07F28 /* brom_brom.caf in Resources */,
+				04ECF0D02CA1D71C00D07F28 /* brom_brom.mp3 in Resources */,
 				0425AD122C93CF80001E82E4 /* Preview Assets.xcassets in Resources */,
 				0425AD0F2C93CF80001E82E4 /* Assets.xcassets in Resources */,
 			);
