@@ -144,7 +144,7 @@ struct DatePickerView: View {
                     viewModelService.kilometersMin = String(minKilometers)
                     viewModelService.kilometersMax = String(maxKilometers)
                     
-                    viewModelService.maxDateService = Calendar.current.date(byAdding: .day, value: -30, to: selectedDate) ?? selectedDate
+                    viewModelService.maxDateService = Calendar.current.date(byAdding: .day, value: +30, to: selectedDate) ?? selectedDate
                     
                     
                     viewModelService.createService(modelContext: modelContext)

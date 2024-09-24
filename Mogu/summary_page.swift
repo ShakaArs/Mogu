@@ -7,6 +7,9 @@ struct SummaryView: View {
     @ObservedObject var serviceViewModel: ServiceViewModel
     @Query var vehicleModel: [VehicleModel]
     @Query var serviceModel: [ServiceModel]
+    @State private var oil: Bool = false
+    @State private var tire: Bool = false
+    @State private var brake: Bool = false
     
     var body: some View {
         TabView {
@@ -41,43 +44,24 @@ struct SummaryView: View {
                         Spacer()
                     }
                     
-                    ForEach(serviceModel, id: \.self) { service in
-                        switch service.serviceType {
-                        case "Oil":
+                    ForEach(["Oil", "Tire", "Brake"], id: \.self) { serviceType in
+                        if let mostRecentService = serviceModel
+                            .filter({ $0.serviceType == serviceType })
+                            .max(by: { $0.maxDateService < $1.maxDateService }) {
+                            
                             CardServiceFilled(
-                                icon: "oilcan.fill",
-                                buttonText: service.kilometersMin,
+                                icon: iconFor(serviceType),
+                                buttonText: mostRecentService.kilometersMin,
                                 backgroundColor: .white,
-                                serviceType: service.serviceType,
-                                nextChange: service.maxDateService,
-                                lastChange: service.maxDateService
+                                serviceType: mostRecentService.serviceType,
+                                nextChange: mostRecentService.maxDateService,
+                                lastChange: mostRecentService.maxDateService
                             )
-                        case "Tire":
-                            CardServiceFilled(
-                                icon: "circle.circle.fill",
-                                buttonText: service.kilometersMin,
-                                backgroundColor: .white,
-                                serviceType: service.serviceType,
-                                nextChange: service.maxDateService,
-                                lastChange: service.maxDateService
-                            )
-                        case "Brake":
-                            CardServiceFilled(
-                                icon: "pedal.brake.fill",
-                                buttonText: service.kilometersMin,
-                                backgroundColor: .white,
-                                serviceType: service.serviceType,
-                                nextChange: service.maxDateService,
-                                lastChange: service.maxDateService
-                            )
-                        default:
-                            EmptyView()
+                        } else {
+                            servicePlaceholderView(serviceType: serviceType)
                         }
                     }
                     
-                    servicePlaceholderView(serviceType: "Oil")
-                    servicePlaceholderView(serviceType: "Tire")
-                    servicePlaceholderView(serviceType: "Brake")
 
                     Spacer()
                 }
@@ -104,6 +88,15 @@ struct SummaryView: View {
                 Image(systemName: "bell")
                 Text("Reminder")
             }
+        }
+    }
+    
+    private func iconFor(_ serviceType: String) -> String {
+        switch serviceType {
+        case "Oil": return "oilcan.fill"
+        case "Tire": return "circle.circle.fill"
+        case "Brake": return "pedal.brake.fill"
+        default: return "questionmark.circle"
         }
     }
     
