@@ -5,54 +5,75 @@ import UserNotifications
 @main
 final class MoGuApp: NSObject, App, UNUserNotificationCenterDelegate {
     
+    @StateObject private var vehicleViewModel = VehicleViewModel() // Initialize the view model
+
     // Required initializer
     override init() {
         super.init() // Call the superclass initializer
         UNUserNotificationCenter.current().delegate = self
         
-        // Schedule notification for today at 00:17 (adjust as needed)
-        scheduleNotificationForToday()
+        // Schedule notifications when the app initializes
+        scheduleDailyNotifications()
     }
-    
-    // Schedule a notification for today at 00:17 (or other time)
-    func scheduleNotificationForToday() {
-        let currentDate = Date()
-        let calendar = Calendar.current
+
+    // Schedule daily notifications at specific times
+    func scheduleDailyNotifications() {
+        let times = [9, 12, 14] // Notification times (9 AM, 12 PM, 2 PM)
         
-        // Create the target date for today at 00:17
-        var dateComponents = calendar.dateComponents([.year, .month, .day], from: currentDate)
-        dateComponents.hour = 0
-        dateComponents.minute = 25
-        
-        if let triggerDate = calendar.date(from: dateComponents) {
-            scheduleNotification(for: "Oil", currentKilometers: 5000, triggerDate: triggerDate)
+        for time in times {
+            scheduleNotification(for: time)
         }
     }
     
-    // Function to schedule a notification
-    func scheduleNotification(for service: String, currentKilometers: Int, triggerDate: Date) {
-        let content = UNMutableNotificationContent()
-        content.title = "Warning: \(service) change"
-        content.body = "The \(service) change should be scheduled soon. Current kilometers: \(currentKilometers)"
+    // Function to schedule a notification for a specific time
+    func scheduleNotification(for hour: Int) {
+        // Load the current kilometers from the vehicle view model
+        let currentKilometers = Int(vehicleViewModel.kilometers) ?? 0
         
-        // Directly assign the custom sound "brom_brom.caf"
-        content.sound = UNNotificationSound(named: UNNotificationSoundName("brom_brom.caf"))
-
-        // Set up the trigger date components
-        let triggerComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: triggerDate)
-        let trigger = UNCalendarNotificationTrigger(dateMatching: triggerComponents, repeats: false)
+        let serviceWarnings = checkServiceConditions(currentKilometers: currentKilometers)
         
-        // Create the notification request
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+        for warning in serviceWarnings {
+            let content = UNMutableNotificationContent()
+            content.title = warning.title
+            content.body = warning.message
+            content.sound = UNNotificationSound(named: UNNotificationSoundName("brom_brom.caf"))
 
-        // Schedule the notification
-        UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
-                print("Error scheduling notification: \(error.localizedDescription)")
-            } else {
-                print("Notification scheduled for \(triggerDate)")
+            var dateComponents = DateComponents()
+            dateComponents.hour = hour
+            dateComponents.minute = 0 // Set to the start of the hour
+            
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+            
+            let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+            UNUserNotificationCenter.current().add(request) { error in
+                if let error = error {
+                    print("Error scheduling notification: \(error.localizedDescription)")
+                } else {
+                    print("Notification scheduled for \(hour):00")
+                }
             }
         }
+    }
+
+    // Function to check service conditions based on kilometers
+    private func checkServiceConditions(currentKilometers: Int) -> [(title: String, message: String)] {
+        var warnings: [(String, String)] = []
+        
+        // Oil service
+        if currentKilometers >= 2500 && currentKilometers < 5000 {
+            warnings.append(("Warning: Oil change", "Oil change should be scheduled soon. Current kilometers: \(currentKilometers)"))
+        } else if currentKilometers >= 5000 {
+            warnings.append(("Urgent: Oil change", "Oil change required! Current kilometers: \(currentKilometers)"))
+        }
+
+        // Tire and brake service
+        if currentKilometers >= 10000 && currentKilometers < 15000 {
+            warnings.append(("Warning: Tire and brake service", "Tire and brake service should be scheduled soon. Current kilometers: \(currentKilometers)"))
+        } else if currentKilometers >= 15000 {
+            warnings.append(("Urgent: Tire and brake service", "Tire and brake service required! Current kilometers: \(currentKilometers)"))
+        }
+        
+        return warnings
     }
     
     // UNUserNotificationCenterDelegate method to handle notifications while the app is in the foreground
@@ -65,6 +86,7 @@ final class MoGuApp: NSObject, App, UNUserNotificationCenterDelegate {
         WindowGroup {
             SplashScreen()
                 .modelContainer(for: [VehicleModel.self, ServiceModel.self])
+                .environmentObject(vehicleViewModel) // Pass the view model to the environment
         }
     }
 }

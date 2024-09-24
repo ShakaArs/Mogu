@@ -61,38 +61,73 @@ class VehicleViewModel: ObservableObject {
             }
         }
     
-    func updateKilometers() {
-        let currentKilometers = Int(kilometers) ?? 0
-        let dailyUsage = Int(dailyUse) ?? 0
-        let weeklyUsage = Int(weeklyUse) ?? 0
-                
-        // Calculate the additional kilometers based on daily usage over a week
-        let additionalKilometers = dailyUsage * weeklyUsage
+    func updateKilometersWeekly() -> String {
+        let currentDate = Date()
+        let calendar = Calendar.current
 
-        // Update the kilometers by adding the new usage
-        let newKilometers = currentKilometers + additionalKilometers
-
-        // Store the result back as a String
-        self.kilometers = String(newKilometers)
+        // Calculate the difference in weeks between the current date and the last updated date
+            if let weeksElapsed = calendar.dateComponents([.weekOfYear], from: lastUpdated, to: currentDate).weekOfYear {
                 
-        // Check service conditions for maintenance
-        checkServiceConditions(currentKilometers: newKilometers)
+                if weeksElapsed > 0 {
+                    // Calculate the total kilometers to add based on weeks passed
+                    let dailyUsage = Int(dailyUse) ?? 0
+                    let weeklyUsage = Int(weeklyUse) ?? 0
+                    let additionalKilometers = weeklyUsage * dailyUsage * weeksElapsed
+
+                    // Update the kilometers and the last updated time
+                    let currentKilometers = Int(kilometers) ?? 0
+                    let newKilometers = currentKilometers + additionalKilometers
+                    self.kilometers = String(newKilometers)
+                    
+                    // Update lastUpdated to the new date
+                    lastUpdated = currentDate
+                    
+                    // Check service conditions for maintenance
+                    checkServiceConditions(currentKilometers: newKilometers)
+                    
+                    print("Kilometers updated by \(additionalKilometers) over \(weeksElapsed) week(s). New total: \(newKilometers)")
+                    
+                    // Return the new kilometers value as String
+                    return self.kilometers
+                } else {
+                    print("No weeks have passed since the last update.")
+                }
+            }
+            return self.kilometers  // Return the current kilometers if no update is made
+        
+
     }
     // Check if service is needed based on kilometers
-    private func checkServiceConditions(currentKilometers: Int) {
+    private func checkServiceConditions(currentKilometers: Int) -> (title: String, content: String)? {
+        // Service messages
+        var title: String?
+        var content: String?
+
         // Oil service (lower limit: 2500, upper limit: 5000)
         if currentKilometers >= 2500 && currentKilometers < 5000 {
-            print("Warning: Oil change recommended.")
+            title = "Warning: Oil change"
+            content = "should be scheduled soon. Current kilometers: \(currentKilometers)"
         } else if currentKilometers >= 5000 {
-            print("Urgent: Oil change required!")
+            title = "Urgent: Oil change"
+            content = "is required! Current kilometers: \(currentKilometers)"
         }
+
         // Tire and brake service (lower limit: 10000, upper limit: 15000)
         if currentKilometers >= 10000 && currentKilometers < 15000 {
-            print("Warning: Tire and brake service recommended.")
+            title = "Warning: Tire and brake service"
+            content = "should be scheduled soon. Current kilometers: \(currentKilometers)"
         } else if currentKilometers >= 15000 {
-            print("Urgent: Tire and brake service required!")
+            title = "Urgent: Tire and brake service"
+            content = "is required! Current kilometers: \(currentKilometers)"
         }
+
+        // Return the title and content if they are set
+        if let title = title, let content = content {
+            return (title, content)
+        }
+        return nil // Return nil if no conditions were met
     }
+
     
     func getLastUpdatedTime() -> Date {
             return lastUpdated

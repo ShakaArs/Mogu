@@ -21,7 +21,7 @@ struct SummaryView: View {
                             .padding(.leading)
                             .font(.title2)
                         Text("Time")
-                            .foregroundColor(.green)
+                            .foregroundColor(Color("PrimaryColor"))
                             .font(.title2)
                             .fontWeight(.bold)
                         Text("to service?")
@@ -69,7 +69,7 @@ struct SummaryView: View {
                 .navigationBarItems(trailing: NavigationLink(destination: HistoryView()) {
                     Image(systemName: "book.and.wrench")
                         .padding()
-                        .foregroundColor(.green)
+                        .foregroundColor(Color("PrimaryColor"))
                         .font(.title2)
                 })
                 .onAppear {
@@ -105,7 +105,7 @@ struct SummaryView: View {
             icon: "",
             iconInput: "chevron.right",
             buttonText: "Set Your Vehicle",
-            backgroundColor: .green,
+            backgroundColor: Color("PrimaryColor"),
             textColor: .white,
             frameHeight: 60,
             textSize: 25,

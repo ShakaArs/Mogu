@@ -82,7 +82,7 @@ struct InputVehiclePage: View {
                         Text("Submit")
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color.green)
+                            .background(Color("PrimaryColor"))
                             .foregroundColor(.white)
                             .cornerRadius(10)
                     }

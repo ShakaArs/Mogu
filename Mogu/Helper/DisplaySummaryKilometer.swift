@@ -8,70 +8,59 @@
 import SwiftUI
 import SwiftData
 
-struct DisplaySummaryKilometer: View{
-    @Query var vehicleModel : [VehicleModel]
-//    @ObservedObject var vehicleViewModel: VehicleViewModel
+struct DisplaySummaryKilometer: View {
+    @Query var vehicleModel: [VehicleModel]  // Fetch data from Core Data
     @State private var showEditPage = false
     @StateObject private var vehicleViewModel = VehicleViewModel()
-        var body: some View {
-            NavigationStack {
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text(vehicleModel.first?.motorcycleType ?? "")
-                            .foregroundColor(.green)
-                            .fontWeight(.bold)
-                            .font(.title2)
-                        
-                        Text("Motorcycle")
-                            .font(.title2)
-                        Spacer()
-                        Button(action: {
-                            showEditPage = true
-                        }) {
-                            Text("Edit")
+    
+    var body: some View {
+        NavigationStack {
+            VStack(alignment: .leading) {
+                HStack {
+                    Text(vehicleModel.first?.motorcycleType ?? "")
+                        .foregroundColor(Color("PrimaryColor"))
+                        .fontWeight(.bold)
+                        .font(.title2)
+                    
+                    Text("Motorcycle")
+                        .font(.title2)
+                    Spacer()
+                    Button(action: {
+                        showEditPage = true
+                    }) {
+                        Text("Edit")
                             .foregroundColor(.black)
                             .fontWeight(.bold)
-                        }
-                        .padding(.leading)
-                                        
-//                        NavigationLink(destination: ReminderView()) {
-//                            Text("Edit")
-//                                .foregroundColor(.black)
-//                                .fontWeight(.bold)
-//                            }
-//                            .padding(.leading)
-//                        NavigationLink(destination: EditVehiclePage(vehicleViewModel: vehicleViewModel) {
-//                                                // Completion action
-//                                            }, isActive: $showEditPage) {
-//                                                Text("Edit")
-//                                                    .foregroundColor(.black)
-//                                                    .fontWeight(.bold)
-//                                            }
-//                                            .padding(.leading)
                     }
-
-                        HStack {
-                            Text(vehicleModel.first?.kilometers ?? "")
-                                .font(.largeTitle)
-                                .fontWeight(.bold)
-                            Text("km")
-                                .foregroundColor(.green)
-                                .fontWeight(.bold)
-                        }
+                    .padding(.leading)
+                }
                 
-                    }
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(15)
-                .shadow(radius: 5)
-                .navigationDestination(isPresented: $showEditPage) {
-                    EditVehiclePage(vehicleViewModel: vehicleViewModel) {
-                                    // Completion action
+                HStack {
+                    // Menampilkan kilometer dari view model yang sudah diperbarui
+                    Text(vehicleViewModel.kilometers)
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                    Text("km")
+                        .foregroundColor(Color("PrimaryColor"))
+                        .fontWeight(.bold)
+                }
+            }
+            .padding()
+            .background(Color.white)
+            .cornerRadius(15)
+            .shadow(radius: 5)
+            .onAppear {
+                // Panggil fungsi update saat tampilan muncul
+                vehicleViewModel.loadVehicleData(from: vehicleModel.first ?? VehicleModel())
+                vehicleViewModel.updateKilometersWeekly()
+            }
+            .navigationDestination(isPresented: $showEditPage) {
+                EditVehiclePage(vehicleViewModel: vehicleViewModel) {
                     showEditPage = false
-                    }
-                            }
+                }
             }
-            }
+        }
+    }
 }
 
 #Preview {

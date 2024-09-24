@@ -1,10 +1,3 @@
-//
-//  edit_vehicle_page.swift
-//  MoGu
-//
-//  Created by MacBook Air on 23/09/24.
-//
-
 import SwiftUI
 import SwiftData
 
@@ -44,7 +37,7 @@ struct EditVehiclePage: View {
                         Text("Submit")
                             .frame(maxWidth: .infinity)
                             .padding()
-                            .background(Color.green)
+                            .background(Color("PrimaryColor"))
                             .foregroundColor(.white)
                             .cornerRadius(10)
                     }
@@ -65,20 +58,12 @@ struct EditVehiclePage: View {
             .onAppear {
                 if let vehicle = vehicleModel.first {
                     vehicleViewModel.loadVehicleData(from: vehicle)
-                    km = vehicleViewModel.kilometers
+                    // Perbarui state dengan data terbaru
+                    km = vehicleViewModel.kilometers // Mengambil kilometer terbaru
                     dailyUse = vehicleViewModel.dailyUse
                     weeklyUse = vehicleViewModel.weeklyUse
                 }
             }
-        }
-    }
-    
-    private func loadVehicleData() {
-        if let vehicle = vehicleModel.first {
-            km = vehicle.kilometers
-            dailyUse = vehicle.dailyUse
-            weeklyUse = vehicle.weeklyUse
-            
         }
     }
     
@@ -97,9 +82,15 @@ struct EditVehiclePage: View {
     
     private func updateVehicle() {
         if let vehicle = vehicleModel.first {
+            // Perbarui data di ViewModel
             vehicleViewModel.kilometers = km
             vehicleViewModel.dailyUse = dailyUse
             vehicleViewModel.weeklyUse = weeklyUse
+
+            // Hitung kilometer baru berdasarkan logika penggunaan harian dan mingguan
+            vehicleViewModel.updateKilometersWeekly() // Pastikan fungsi ini memperbarui kilometer
+
+            // Update data di model dan simpan perubahan
             vehicleViewModel.updateInput(vehicle: vehicle, modelContext: modelContext)
         }
     }
@@ -114,7 +105,3 @@ struct EditVehiclePage_Previews: PreviewProvider {
         }
     }
 }
-//#Preview {
-//    EditVehiclePage()
-//}
-
