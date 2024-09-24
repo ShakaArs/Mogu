@@ -23,7 +23,7 @@ struct ReminderView: View {
         Service(service: "brake", kilometer: 12000),
         Service(service: "brake", kilometer: 10500),
     ]
-    
+
     var body: some View {
         TabView{
             NavigationView {
@@ -37,7 +37,7 @@ struct ReminderView: View {
                     
                     List(services){service in
                         VStack(alignment: .leading){
-                            ViewRemindWarning(serviceC: service)
+                            ViewRemindWarning(vehicleViewModel: <#T##VehicleViewModel#>)
                         }
                         .listRowSeparator(.hidden)
                         
@@ -82,15 +82,16 @@ struct Service: Identifiable{
 }
 
 struct ViewRemindWarning: View {
-    var serviceC: Service
+//    var serviceC: Service
     
 //    var backgroundColor: Color
 //    var service: String
 //    var textRemind:String
 //    var kilometer: Int
-    
-    @Query var vehicleModel: [VehicleModel]
+    @StateObject var vehicleViewModel: VehicleViewModel
     @Query var serviceModel: [ServiceModel]
+//    @Query var vehicleModel: [VehicleModel]
+    
     
     var body: some View {
         
@@ -111,7 +112,7 @@ struct ViewRemindWarning: View {
                     let kilometermaxi =  Int(service.kilometersMin) ?? 0
                     if(kilometerminim >= 2500 && kilometermaxi <= 5000){
                         HStack{
-                            Text("**Warning: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(service)**")
+                            Text("**Warning: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(vehicleViewModel.kilometers)**")
                                 .font(.body)
                         }
                         .frame(width: 310)
@@ -122,7 +123,7 @@ struct ViewRemindWarning: View {
                     }
                     else if(kilometermaxi >= 5000){
                         HStack{
-                            Text("**Urgent: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(serviceC.kilometer)**")
+                            Text("**Urgent: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(vehicleViewModel.kilometers)**")
                                 .font(.body)
                         }
                         .frame(width: 310)
@@ -136,7 +137,7 @@ struct ViewRemindWarning: View {
                     let kilometermaxi =  Int(service.kilometersMin) ?? 0
                     if(kilometerminim >= 10000 && kilometermaxi <= 15000){
                         HStack{
-                            Text("**Warning: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(serviceC.kilometer)**")
+                            Text("**Warning: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(vehicleViewModel.kilometers)**")
                                 .font(.body)
                         }
                         .frame(width: 310)
@@ -147,7 +148,7 @@ struct ViewRemindWarning: View {
                     }
                     else if(kilometermaxi >= 15000){
                         HStack{
-                            Text("**Urgent: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(serviceC.kilometer)**")
+                            Text("**Urgent: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(vehicleViewModel.kilometers)**")
                                 .font(.body)
                         }
                         .frame(width: 310)
@@ -161,7 +162,7 @@ struct ViewRemindWarning: View {
                     let kilometermaxi =  Int(service.kilometersMin) ?? 0
                     if(kilometerminim >= 10000 && kilometermaxi <= 15000){
                         HStack{
-                            Text("**Warning: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(serviceC.kilometer)**")
+                            Text("**Warning: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(vehicleViewModel.kilometers)**")
                                 .font(.body)
                         }
                         .frame(width: 310)
@@ -172,7 +173,7 @@ struct ViewRemindWarning: View {
                     }
                     else if(kilometermaxi >= 15000){
                         HStack{
-                            Text("**Urgent: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(serviceC.kilometer)**")
+                            Text("**Urgent: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(vehicleViewModel.kilometers)**")
                                 .font(.body)
                         }
                         .frame(width: 310)
