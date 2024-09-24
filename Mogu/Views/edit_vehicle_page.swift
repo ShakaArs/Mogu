@@ -78,6 +78,7 @@ struct EditVehiclePage: View {
             km = vehicle.kilometers
             dailyUse = vehicle.dailyUse
             weeklyUse = vehicle.weeklyUse
+            
         }
     }
     

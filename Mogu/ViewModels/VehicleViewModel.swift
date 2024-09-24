@@ -9,17 +9,20 @@ class VehicleViewModel: ObservableObject {
     @Published var dailyUse: String = ""
     @Published var weeklyUse: String = ""
     @Published var isVehicleDataSet: Bool = false
+    private var lastUpdated: Date = Date()
     
     // Method to create a new vehicle entry
     func createVehicle(modelContext: ModelContext) {
-        print(motorcycleType,kilometers,dailyUse,weeklyUse,isVehicleDataSet)
+        print(motorcycleType,kilometers,dailyUse,weeklyUse,isVehicleDataSet, lastUpdated)
         let newVehicle = VehicleModel(
             motorcycleType: motorcycleType,
             kilometers: kilometers,
             dailyUse: dailyUse,
             weeklyUse: weeklyUse,
-            isVehicleDataSet: true
+            isVehicleDataSet: true,
+            lastUpdated: Date()
         )
+//        newVehicle.lastUpdated = Date()
         modelContext.insert(newVehicle)
         do{
             try modelContext.save()
@@ -28,6 +31,7 @@ class VehicleViewModel: ObservableObject {
             print("Failed to save vehicle data: \(error.localizedDescription)")
             isVehicleDataSet = false
         }
+        
     }
     
     func loadVehicleData(from vehicle: VehicleModel) {
@@ -36,6 +40,7 @@ class VehicleViewModel: ObservableObject {
             dailyUse = vehicle.dailyUse
             weeklyUse = vehicle.weeklyUse
             isVehicleDataSet = true
+            lastUpdated = vehicle.lastUpdated
         }
     
     func updateInput(vehicle: VehicleModel, modelContext: ModelContext) {
@@ -44,10 +49,13 @@ class VehicleViewModel: ObservableObject {
             vehicle.kilometers = kilometers
             vehicle.dailyUse = dailyUse
             vehicle.weeklyUse = weeklyUse
-            
+            vehicle.lastUpdated = Date()
             do {
                 try modelContext.save()  // Save the updated vehicle
                 print("Vehicle updated successfully")
+                lastUpdated = vehicle.lastUpdated
+                print("\(vehicle.motorcycleType) \(vehicle.kilometers) \(vehicle.dailyUse) \(vehicle.weeklyUse) \(vehicle.isVehicleDataSet)")
+                isVehicleDataSet = true 
             } catch {
                 print("Failed to update vehicle data: \(error.localizedDescription)")
             }
@@ -86,7 +94,9 @@ class VehicleViewModel: ObservableObject {
         }
     }
     
-    
+    func getLastUpdatedTime() -> Date {
+            return lastUpdated
+        }
     
 
 }
