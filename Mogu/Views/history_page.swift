@@ -6,48 +6,71 @@
 //
 
 import SwiftUI
+import SwiftData
 
-// A struct to store exactly one history's data.
-struct History: Identifiable {
-    let id = UUID()
-    let date: String
-    let service: String
-}
+//// A struct to store exactly one history's data.
+//struct History: Identifiable {
+//    let id = UUID()
+//    
+//}
 
 // A view that shows the data for one History.
 struct HistoryRow: View {
-    var history: History
+    @State var serviceType:String
+    @State var lastDate:Date
 
     var body: some View {
-        VStack(alignment: .leading) {
-            // Align text to the left within the VStack
-            Text("\(history.date)")
-                .frame(maxWidth: .infinity, alignment: .leading).bold()  // Left align date text
-            Text("Service: \(history.service)")
+        // Date Formatter to show only Day, Date, Month, Year
+        let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "EEEE, d MMMM yyyy" // Day, Date, Month, Year format
+                
+        let formattedDate = dateFormatter.string(from: lastDate)
+        
+        return VStack(alignment: .leading) {
+            Text(formattedDate)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .bold()// Left align service text
+            Text("Service: \(serviceType)")
                 .frame(maxWidth: .infinity, alignment: .leading)  // Left align service text
+            
         }
         .padding(.vertical, 4) // Optional padding to space out the rows
     }
 }
 
 struct HistoryView: View {
+    @Query var serviceModel: [ServiceModel]
+    
     //indikator supaya bisa dilihat View
     @State private var searchText = ""
     
-    let histories = [
-        History(date: "27 January 2020", service: "Ban"),
-        History(date: "9 September 2019", service: "Oli"),
-        History(date: "16 August 2019", service: "Ban"),
-        History(date: "4 June 2019", service: "Kampas Rem")
-    ]
+    
+    
+//    let histories = [
+//        History(date:ServiceModel(lastDateService: <#T##Date#>), service: ServiceModel(serviceType: <#T##String#>),
+//        History(date: "9 September 2019", service: "Oli"),
+//        History(date: "16 August 2019", service: "Ban"),
+//        History(date: "4 June 2019", service: "Kampas Rem")
+//    ]
     
     // Computed property to filter the items
-    var filteredTexts: [History] {
-        if searchText.isEmpty {
-            return histories
-        } else {
-            return histories.filter { $0.service.lowercased().contains(searchText.lowercased())||$0.date.lowercased().contains(searchText.lowercased())}
-        }
+    var filteredTexts: [ServiceModel] {
+        // DateFormatter to convert Date to string for search
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "d MMMM yyyy" // Only date, month, and year for search
+                
+        // Filter by both serviceType and formatted lastDateService
+                let filtered = serviceModel.filter { service in
+                    let formattedDate = dateFormatter.string(from: service.lastDateService)
+                    
+                    // Check if the service type or the formatted date contains the search text
+                    return searchText.isEmpty ||
+                           service.serviceType.lowercased().contains(searchText.lowercased()) ||
+                           formattedDate.lowercased().contains(searchText.lowercased())
+                }
+                
+                // Sort the filtered results by lastDateService in descending order (newest first)
+                return filtered.sorted { $0.lastDateService > $1.lastDateService }
     }
     
     var body: some View {
@@ -92,7 +115,7 @@ struct HistoryView: View {
                 }
                 
                 List(filteredTexts) { history in
-                    HistoryRow(history: history)
+                    HistoryRow(serviceType: history.serviceType,lastDate: history.lastDateService)
                 }
             }
             .toolbar {

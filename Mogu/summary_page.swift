@@ -55,7 +55,7 @@ struct SummaryView: View {
                                 backgroundColor: .white,
                                 serviceType: mostRecentService.serviceType,
                                 nextChange: mostRecentService.maxDateService,
-                                lastChange: mostRecentService.maxDateService
+                                lastChange: mostRecentService.lastDateService
                             )
                         } else {
                             servicePlaceholderView(serviceType: serviceType)
@@ -88,7 +88,7 @@ struct SummaryView: View {
                 Image(systemName: "bell")
                 Text("Reminder")
             }
-        }
+        }.accentColor(Color("PrimaryColor"))
     }
     
     private func iconFor(_ serviceType: String) -> String {
