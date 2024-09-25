@@ -6,10 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ReminderView: View {
     
 //    @ObservedObject var serviceViewModel: SeviceViewModel
+//    @StateObject var vehicleViewModel: VehicleViewModel
+    @Query var serviceModel: [ServiceModel]
+    @Query var vehicleModel: [VehicleModel]
     
     let services = [
         Service(service: "oil", kilometer: 5500),
@@ -22,37 +26,103 @@ struct ReminderView: View {
         Service(service: "brake", kilometer: 12000),
         Service(service: "brake", kilometer: 10500),
     ]
-    
+
     var body: some View {
         TabView{
             NavigationView {
                 VStack{
-
-//                    ViewRemindWarning(
-//                        backgroundColor: Color(hex: "#F5EFD4"),
-//                        service: "tire",
-//                        textRemind: serviceViewModel.checkTireService(currentKilometers: 20000)
-//                    )
                     
-                    List(services){service in
-                        VStack(alignment: .leading){
-                            ViewRemindWarning(serviceC: service)
+//                    List(serviceModel){service in
+//                        VStack(alignment: .leading){
+//                            ViewRemindWarning()
+//                        }
+//                        .listRowSeparator(.hidden)
+//                        
+//                    }
+//                    .listStyle(PlainListStyle())
+                    
+                    ForEach(serviceModel, id: \.self) { service in
+                        switch service.serviceType {
+                            case "Oil":
+                                let kilometerminim =  Int(service.kilometersMin) ?? 0
+                                let kilometermaxi =  Int(service.kilometersMin) ?? 0
+                                if(kilometerminim >= 2500 && kilometermaxi <= 5000){
+                                    HStack{
+                                        Text("**Warning: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(vehicleModel.first?.kilometers)**")
+                                            .font(.body)
+                                    }
+                                    .frame(width: 310)
+                                    .padding(10)
+                                    .background(Color(hex: "#F5EFD4"))
+                                    .foregroundColor(.black)
+                                    .cornerRadius(10)
+                                }
+                                else if(kilometermaxi >= 5000){
+                                    HStack{
+                                        Text("**Urgent: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(vehicleModel.last?.kilometers)**")
+                                            .font(.body)
+                                    }
+                                    .frame(width: 310)
+                                    .padding(13)
+                                    .background(Color(hex: "#F5D4D4"))
+                                    .foregroundColor(.black)
+                                    .cornerRadius(10)
+                                }
+                            case "Tire":
+                                let kilometerminim =  Int(service.kilometersMin) ?? 0
+                                let kilometermaxi =  Int(service.kilometersMin) ?? 0
+                                if(kilometerminim >= 10000 && kilometermaxi <= 15000){
+                                    HStack{
+                                        Text("**Warning: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(vehicleModel.first?.kilometers)**")
+                                            .font(.body)
+                                    }
+                                    .frame(width: 310)
+                                    .padding(10)
+                                    .background(Color(hex: "#F5EFD4"))
+                                    .foregroundColor(.black)
+                                    .cornerRadius(10)
+                                }
+                                else if(kilometermaxi >= 15000){
+                                    HStack{
+                                        Text("**Urgent: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(vehicleModel.first?.kilometers)**")
+                                            .font(.body)
+                                    }
+                                    .frame(width: 310)
+                                    .padding(13)
+                                    .background(Color(hex: "#F5D4D4"))
+                                    .foregroundColor(.black)
+                                    .cornerRadius(10)
+                                }
+                            case "Brake":
+                                let kilometerminim =  Int(service.kilometersMin) ?? 0
+                                let kilometermaxi =  Int(service.kilometersMin) ?? 0
+                                if(kilometerminim >= 10000 && kilometermaxi <= 15000){
+                                    HStack{
+                                        Text("**Warning: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(vehicleModel.first?.kilometers)**")
+                                            .font(.body)
+                                    }
+                                    .frame(width: 310)
+                                    .padding(10)
+                                    .background(Color(hex: "#F5EFD4"))
+                                    .foregroundColor(.black)
+                                    .cornerRadius(10)
+                                }
+                                else if(kilometermaxi >= 15000){
+                                    HStack{
+                                        Text("**Urgent: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(vehicleModel.first?.kilometers)**")
+                                            .font(.body)
+                                    }
+                                    .frame(width: 310)
+                                    .padding(13)
+                                    .background(Color(hex: "#F5D4D4"))
+                                    .foregroundColor(.black)
+                                    .cornerRadius(10)
+                                }
+                            default:
+                            ReminderView()
                         }
-                        .listRowSeparator(.hidden)
-                        
                     }
-                    .listStyle(PlainListStyle())
-//
-//                    ViewRemind(
-//                        backgroundColor: Color(hex: "#F5D4D4"),
-//                        textReminder: "brake change by 14-10-2024"
-//                    )
-//                    
-//                    ViewRemind(
-//                        backgroundColor: Color(hex: "#F5EFD4"),
-//                        textReminder: "tire change by 13-01-2025"
-//                    )
-//                    
+                    
                     Spacer()
                 }
                 .navigationTitle("Reminder")
@@ -81,12 +151,16 @@ struct Service: Identifiable{
 }
 
 struct ViewRemindWarning: View {
-    var serviceC: Service
+//    var serviceC: Service
     
 //    var backgroundColor: Color
 //    var service: String
 //    var textRemind:String
 //    var kilometer: Int
+//    @StateObject var vehicleViewModel: VehicleViewModel
+    @Query var serviceModel: [ServiceModel]
+    @Query var vehicleModel: [VehicleModel]
+    
     
     var body: some View {
         
@@ -99,74 +173,157 @@ struct ViewRemindWarning: View {
 //            .background(backgroundColor)
 //            .foregroundColor(.black)
 //            .cornerRadius(10)
-        if(serviceC.service.elementsEqual("oil") && serviceC.kilometer >= 2500 && serviceC.kilometer <= 5000){
-            HStack{
-                Text("**Warning: \(serviceC.service) change** should be scheduled soon. **Current kilometers: \(serviceC.kilometer)**")
-                    .font(.body)
+        
+        ForEach(serviceModel, id: \.self) { service in
+            switch service.serviceType {
+                case "Oil":
+                    let kilometerminim =  Int(service.kilometersMin) ?? 0
+                    let kilometermaxi =  Int(service.kilometersMin) ?? 0
+                    if(kilometerminim >= 2500 && kilometermaxi <= 5000){
+                        HStack{
+                            Text("**Warning: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(vehicleModel.first?.kilometers)**")
+                                .font(.body)
+                        }
+                        .frame(width: 310)
+                        .padding(10)
+                        .background(Color(hex: "#F5EFD4"))
+                        .foregroundColor(.black)
+                        .cornerRadius(10)
+                    }
+                    else if(kilometermaxi >= 5000){
+                        HStack{
+                            Text("**Urgent: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(vehicleModel.first?.kilometers)**")
+                                .font(.body)
+                        }
+                        .frame(width: 310)
+                        .padding(13)
+                        .background(Color(hex: "#F5D4D4"))
+                        .foregroundColor(.black)
+                        .cornerRadius(10)
+                    }
+                case "Tire":
+                    let kilometerminim =  Int(service.kilometersMin) ?? 0
+                    let kilometermaxi =  Int(service.kilometersMin) ?? 0
+                    if(kilometerminim >= 10000 && kilometermaxi <= 15000){
+                        HStack{
+                            Text("**Warning: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(vehicleModel.first?.kilometers)**")
+                                .font(.body)
+                        }
+                        .frame(width: 310)
+                        .padding(10)
+                        .background(Color(hex: "#F5EFD4"))
+                        .foregroundColor(.black)
+                        .cornerRadius(10)
+                    }
+                    else if(kilometermaxi >= 15000){
+                        HStack{
+                            Text("**Urgent: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(vehicleModel.first?.kilometers)**")
+                                .font(.body)
+                        }
+                        .frame(width: 310)
+                        .padding(13)
+                        .background(Color(hex: "#F5D4D4"))
+                        .foregroundColor(.black)
+                        .cornerRadius(10)
+                    }
+                case "Brake":
+                    let kilometerminim =  Int(service.kilometersMin) ?? 0
+                    let kilometermaxi =  Int(service.kilometersMin) ?? 0
+                    if(kilometerminim >= 10000 && kilometermaxi <= 15000){
+                        HStack{
+                            Text("**Warning: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(vehicleModel.first?.kilometers)**")
+                                .font(.body)
+                        }
+                        .frame(width: 310)
+                        .padding(10)
+                        .background(Color(hex: "#F5EFD4"))
+                        .foregroundColor(.black)
+                        .cornerRadius(10)
+                    }
+                    else if(kilometermaxi >= 15000){
+                        HStack{
+                            Text("**Urgent: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(vehicleModel.first?.kilometers)**")
+                                .font(.body)
+                        }
+                        .frame(width: 310)
+                        .padding(13)
+                        .background(Color(hex: "#F5D4D4"))
+                        .foregroundColor(.black)
+                        .cornerRadius(10)
+                    }
+                default:
+                ReminderView()
             }
-            .frame(width: 310)
-            .padding(10)
-            .background(Color(hex: "#F5EFD4"))
-            .foregroundColor(.black)
-            .cornerRadius(10)
-        }
-        else if(serviceC.service.elementsEqual("oil") && serviceC.kilometer > 5000){
-            HStack{
-                Text("**Urgent: \(serviceC.service) change** should be scheduled soon. **Current kilometers: \(serviceC.kilometer)**")
-                    .font(.body)
-            }
-            .frame(width: 310)
-            .padding(13)
-            .background(Color(hex: "#F5D4D4"))
-            .foregroundColor(.black)
-            .cornerRadius(10)
         }
         
-        if(serviceC.service.elementsEqual("tire") && serviceC.kilometer >= 10000 && serviceC.kilometer <= 15000){
-            HStack{
-                Text("**Warning: \(serviceC.service) change** should be scheduled soon. **Current kilometers: \(serviceC.kilometer)**")
-                    .font(.body)
-            }
-            .frame(width: 310)
-            .padding(10)
-            .background(Color(hex: "#F5EFD4"))
-            .foregroundColor(.black)
-            .cornerRadius(10)
-        }
-        else if(serviceC.service.elementsEqual("tire") && serviceC.kilometer > 15000){
-            HStack{
-                Text("**Urgent: \(serviceC.service) change** should be scheduled soon. **Current kilometers: \(serviceC.kilometer)**")
-                    .font(.body)
-            }
-            .frame(width: 310)
-            .padding(13)
-            .background(Color(hex: "#F5D4D4"))
-            .foregroundColor(.black)
-            .cornerRadius(10)
-        }
-        
-        if(serviceC.service.elementsEqual("brake") && serviceC.kilometer >= 10000 && serviceC.kilometer <= 15000){
-            HStack{
-                Text("**Warning: \(serviceC.service) change** should be scheduled soon. **Current kilometers: \(serviceC.kilometer)**")
-                    .font(.body)
-            }
-            .frame(width: 310)
-            .padding(10)
-            .background(Color(hex: "#F5EFD4"))
-            .foregroundColor(.black)
-            .cornerRadius(10)
-        }
-        else if(serviceC.service.elementsEqual("brake") && serviceC.kilometer > 15000){
-            HStack{
-                Text("**Urgent: \(serviceC.service) change** should be scheduled soon. **Current kilometers: \(serviceC.kilometer)**")
-                    .font(.body)
-            }
-            .frame(width: 310)
-            .padding(13)
-            .background(Color(hex: "#F5D4D4"))
-            .foregroundColor(.black)
-            .cornerRadius(10)
-        }
+//        if(serviceC.service.elementsEqual("oil") && serviceC.kilometer >= 2500 && serviceC.kilometer <= 5000){
+//            HStack{
+//                Text("**Warning: \(serviceC.service) change** should be scheduled soon. **Current kilometers: \(serviceC.kilometer)**")
+//                    .font(.body)
+//            }
+//            .frame(width: 310)
+//            .padding(10)
+//            .background(Color(hex: "#F5EFD4"))
+//            .foregroundColor(.black)
+//            .cornerRadius(10)
+//        }
+//        else if(serviceC.service.elementsEqual("oil") && serviceC.kilometer > 5000){
+//            HStack{
+//                Text("**Urgent: \(serviceC.service) change** should be scheduled soon. **Current kilometers: \(serviceC.kilometer)**")
+//                    .font(.body)
+//            }
+//            .frame(width: 310)
+//            .padding(13)
+//            .background(Color(hex: "#F5D4D4"))
+//            .foregroundColor(.black)
+//            .cornerRadius(10)
+//        }
+//        
+//        if(serviceC.service.elementsEqual("tire") && serviceC.kilometer >= 10000 && serviceC.kilometer <= 15000){
+//            HStack{
+//                Text("**Warning: \(serviceC.service) change** should be scheduled soon. **Current kilometers: \(serviceC.kilometer)**")
+//                    .font(.body)
+//            }
+//            .frame(width: 310)
+//            .padding(10)
+//            .background(Color(hex: "#F5EFD4"))
+//            .foregroundColor(.black)
+//            .cornerRadius(10)
+//        }
+//        else if(serviceC.service.elementsEqual("tire") && serviceC.kilometer > 15000){
+//            HStack{
+//                Text("**Urgent: \(serviceC.service) change** should be scheduled soon. **Current kilometers: \(serviceC.kilometer)**")
+//                    .font(.body)
+//            }
+//            .frame(width: 310)
+//            .padding(13)
+//            .background(Color(hex: "#F5D4D4"))
+//            .foregroundColor(.black)
+//            .cornerRadius(10)
+//        }
+//        
+//        if(serviceC.service.elementsEqual("brake") && serviceC.kilometer >= 10000 && serviceC.kilometer <= 15000){
+//            HStack{
+//                Text("**Warning: \(serviceC.service) change** should be scheduled soon. **Current kilometers: \(serviceC.kilometer)**")
+//                    .font(.body)
+//            }
+//            .frame(width: 310)
+//            .padding(10)
+//            .background(Color(hex: "#F5EFD4"))
+//            .foregroundColor(.black)
+//            .cornerRadius(10)
+//        }
+//        else if(serviceC.service.elementsEqual("brake") && serviceC.kilometer > 15000){
+//            HStack{
+//                Text("**Urgent: \(serviceC.service) change** should be scheduled soon. **Current kilometers: \(serviceC.kilometer)**")
+//                    .font(.body)
+//            }
+//            .frame(width: 310)
+//            .padding(13)
+//            .background(Color(hex: "#F5D4D4"))
+//            .foregroundColor(.black)
+//            .cornerRadius(10)
+//        }
         
     }
 }
