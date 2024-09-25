@@ -32,9 +32,19 @@ struct ReminderView: View {
             NavigationView {
                 VStack{
                     
-//                    List(serviceModel){service in
+//                    List(services){service in
 //                        VStack(alignment: .leading){
-//                            ViewRemindWarning()
+////                            Text("**Warning: \(service.service) change** should be scheduled soon. **Current kilometers: \(service.kilometer)**")
+////                                .padding(10)
+////                                .background(Color(hex: "#F5EFD4"))
+//                            
+//                            
+//                            Text("**Warning: \(service.service) change** should be scheduled soon. **Current kilometers: \(service.kilometer)**")
+//                                .font(.body)
+//                            .frame(width: 310)
+//                            .padding(10)
+//                            .background(Color(hex: "#F5EFD4"))
+//                            .cornerRadius(10)
 //                        }
 //                        .listRowSeparator(.hidden)
 //                        
@@ -44,78 +54,61 @@ struct ReminderView: View {
                     ForEach(serviceModel, id: \.self) { service in
                         switch service.serviceType {
                             case "Oil":
-                                let kilometerminim =  Int(service.kilometersMin) ?? 0
-                                let kilometermaxi =  Int(service.kilometersMin) ?? 0
-                                if(kilometerminim >= 2500 && kilometermaxi <= 5000){
-                                    HStack{
-                                        Text("**Warning: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(vehicleModel.first?.kilometers)**")
-                                            .font(.body)
-                                    }
-                                    .frame(width: 310)
+                                let kilometerkendaraan =  Int(vehicleModel.first?.kilometers ?? "") ?? 0
+                                if(kilometerkendaraan >= 2500 && kilometerkendaraan <= 5000){
+                                    Text("Warning: \(service.serviceType) change should be scheduled soon. Current kilometers:  \(vehicleModel.first?.kilometers ?? "")")
+                                    .font(.body)
+                                    .frame(width: 310, height: 90)
                                     .padding(10)
                                     .background(Color(hex: "#F5EFD4"))
-                                    .foregroundColor(.black)
                                     .cornerRadius(10)
                                 }
-                                else if(kilometermaxi >= 5000){
-                                    HStack{
-                                        Text("**Urgent: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(vehicleModel.last?.kilometers)**")
-                                            .font(.body)
-                                    }
-                                    .frame(width: 310)
-                                    .padding(13)
+                                else if(kilometerkendaraan >= 5000){
+                                    Text("Urgent: \(service.serviceType) change should be scheduled soon. Current kilometers:  \(vehicleModel.first?.kilometers ?? "")")
+                                    .font(.body)
+                                    .bold()
+                                    .frame(width: 310, height: 90)
+                                    .padding(10)
                                     .background(Color(hex: "#F5D4D4"))
-                                    .foregroundColor(.black)
                                     .cornerRadius(10)
                                 }
                             case "Tire":
-                                let kilometerminim =  Int(service.kilometersMin) ?? 0
-                                let kilometermaxi =  Int(service.kilometersMin) ?? 0
-                                if(kilometerminim >= 10000 && kilometermaxi <= 15000){
-                                    HStack{
-                                        Text("**Warning: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(vehicleModel.first?.kilometers)**")
-                                            .font(.body)
-                                    }
-                                    .frame(width: 310)
+                                let kilometerkendaraan =  Int(vehicleModel.first?.kilometers ?? "") ?? 0
+                                if(kilometerkendaraan >= 10000 && kilometerkendaraan <= 15000){
+                                    Text("Warning: \(service.serviceType) change should be scheduled soon. Current kilometers:  \(vehicleModel.first?.kilometers ?? "")")
+                                    .font(.body)
+                                    .padding(10)
+                                    .frame(width: 310, height: 90)
                                     .padding(10)
                                     .background(Color(hex: "#F5EFD4"))
-                                    .foregroundColor(.black)
                                     .cornerRadius(10)
                                 }
-                                else if(kilometermaxi >= 15000){
-                                    HStack{
-                                        Text("**Urgent: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(vehicleModel.first?.kilometers)**")
-                                            .font(.body)
-                                    }
-                                    .frame(width: 310)
-                                    .padding(13)
+                                else if(kilometerkendaraan >= 15000){
+                                    Text("Urgent: \(service.serviceType) change should be scheduled soon. Current kilometers:  \(vehicleModel.first?.kilometers ?? "")")
+                                    .font(.body)
+                                    .bold()
+                                    .frame(width: 310, height: 90)
+                                    .padding(10)
                                     .background(Color(hex: "#F5D4D4"))
-                                    .foregroundColor(.black)
                                     .cornerRadius(10)
                                 }
                             case "Brake":
-                                let kilometerminim =  Int(service.kilometersMin) ?? 0
-                                let kilometermaxi =  Int(service.kilometersMin) ?? 0
-                                if(kilometerminim >= 10000 && kilometermaxi <= 15000){
-                                    HStack{
-                                        Text("**Warning: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(vehicleModel.first?.kilometers)**")
-                                            .font(.body)
-                                    }
-                                    .frame(width: 310)
+                                let kilometerkendaraan =  Int(vehicleModel.first?.kilometers ?? "") ?? 0
+                                if(kilometerkendaraan >= 10000 && kilometerkendaraan <= 15000){
+                                    Text("Warning: \(service.serviceType) change should be scheduled soon. Current kilometers:  \(vehicleModel.first?.kilometers ?? "")")
+                                    .font(.body)
+                                    .frame(width: 310, height: 90)
                                     .padding(10)
                                     .background(Color(hex: "#F5EFD4"))
-                                    .foregroundColor(.black)
                                     .cornerRadius(10)
                                 }
-                                else if(kilometermaxi >= 15000){
-                                    HStack{
-                                        Text("**Urgent: \(service.serviceType) change** should be scheduled soon. **Current kilometers: \(vehicleModel.first?.kilometers)**")
-                                            .font(.body)
-                                    }
-                                    .frame(width: 310)
-                                    .padding(13)
+                                else if(kilometerkendaraan >= 15000){
+                                    Text("Urgent: \(service.serviceType) change should be scheduled soon. Current kilometers:  \(vehicleModel.first?.kilometers ?? "")")
+                                    .font(.body)
+                                    .bold()
+                                    .frame(width: 310, height: 90)
+                                    .padding(10)
                                     .background(Color(hex: "#F5D4D4"))
-                                    .foregroundColor(.black)
                                     .cornerRadius(10)
                                 }
                             default:
