@@ -52,7 +52,7 @@ struct SummaryView: View {
                             
                             CardServiceFilled(
                                 icon: iconFor(serviceType),
-                                buttonText: mostRecentService.kilometersMin,
+                                buttonText: mostRecentService.kilometersMax,
                                 backgroundColor: .white,
                                 serviceType: mostRecentService.serviceType,
                                 nextChange: mostRecentService.maxDateService,

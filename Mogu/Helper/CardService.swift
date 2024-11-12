@@ -130,21 +130,23 @@ struct DatePickerView: View {
                     if(serviceType == "Oil"){
                         minKilometers = kilometers + viewModelService.oilWarningThreshold
                         maxKilometers = kilometers + viewModelService.maxKilometerForOil
+                        viewModelService.maxDateService = Calendar.current.date(byAdding: .day, value: +30, to: selectedDate) ?? selectedDate
                     }
                     else if(serviceType == "Tire"){
                         minKilometers = kilometers + viewModelService.tireWarningThreshold
                         maxKilometers = kilometers + viewModelService.maxKilometerForTire
+                        viewModelService.maxDateService = Calendar.current.date(byAdding: .year, value: 1, to: selectedDate) ?? selectedDate
                     }
                     else if (serviceType == "Brake"){
                         minKilometers = kilometers + viewModelService.brakeWarningThreshold
                         maxKilometers = kilometers + viewModelService.maxKilometerForBrake
+                        viewModelService.maxDateService = Calendar.current.date(byAdding: .year, value: 2, to: selectedDate) ?? selectedDate
                     }
                     
                     
                     viewModelService.kilometersMin = String(minKilometers)
                     viewModelService.kilometersMax = String(maxKilometers)
                     
-                    viewModelService.maxDateService = Calendar.current.date(byAdding: .day, value: +30, to: selectedDate) ?? selectedDate
                     
                     
                     viewModelService.createService(modelContext: modelContext)
