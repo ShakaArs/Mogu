@@ -87,6 +87,7 @@ class VehicleViewModel: ObservableObject {
                     
                     print("Kilometers updated by \(additionalKilometers) over \(weeksElapsed) week(s). New total: \(newKilometers)")
                     
+//                    saveUpdatedKilometers(newKilometers, modelContext: modelContext)
                     // Return the new kilometers value as String
                     return self.kilometers
                 } else {
@@ -97,6 +98,27 @@ class VehicleViewModel: ObservableObject {
         
 
     }
+//    private func saveUpdatedKilometers(_ newKilometers: Int , modelContext: ModelContext) {
+//        // Assuming you have a reference to your service model
+//        let vehicle = VehicleModel(
+//            motorcycleType: motorcycleType,
+//            kilometers: String(newKilometers),
+//            dailyUse: dailyUse,
+//            weeklyUse: weeklyUse,
+//            isVehicleDataSet: true,
+//            lastUpdated: lastUpdated
+//        )
+//
+//        // Save the changes to the context
+//        do {
+//            modelContext.insert(vehicle)
+//            try modelContext.save()
+//            print("Updated kilometers saved to vehicle model.")
+//        } catch {
+//            print("Failed to save updated kilometers: \(error.localizedDescription)")
+//        }
+//    }
+    
     // Check if service is needed based on kilometers
     private func checkServiceConditions(currentKilometers: Int) -> (title: String, content: String)? {
         // Service messages

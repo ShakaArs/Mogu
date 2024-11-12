@@ -9,7 +9,8 @@ import SwiftUI
 import SwiftData
 
 struct DisplaySummaryKilometer: View {
-    @Query var vehicleModel: [VehicleModel]  // Fetch data from Core Data
+    @Query var vehicleModel: [VehicleModel]
+    @Environment(\.modelContext) private var modelContext
     @State private var showEditPage = false
     @StateObject private var vehicleViewModel = VehicleViewModel()
     
@@ -52,13 +53,26 @@ struct DisplaySummaryKilometer: View {
             .onAppear {
                 // Panggil fungsi update saat tampilan muncul
                 vehicleViewModel.loadVehicleData(from: vehicleModel.first ?? VehicleModel())
-                vehicleViewModel.updateKilometersWeekly()
+//                vehicleViewModel.updateKilometersWeekly(modelContext: modelContext)
+                updateVehicle()
             }
             .navigationDestination(isPresented: $showEditPage) {
                 EditVehiclePage(vehicleViewModel: vehicleViewModel) {
                     showEditPage = false
                 }
             }
+        }
+    }
+    private func updateVehicle() {
+        if let vehicle = vehicleModel.first {
+            // Perbarui data di ViewModel
+            vehicleViewModel.kilometers = vehicleViewModel.updateKilometersWeekly()
+
+            // Hitung kilometer baru berdasarkan logika penggunaan harian dan mingguan
+            /*vehicleViewModel.updateKilometersWeekly(modelContext: modelContext)*/ // Pastikan fungsi ini memperbarui kilometer
+
+            // Update data di model dan simpan perubahan
+            vehicleViewModel.updateInput(vehicle: vehicle, modelContext: modelContext)
         }
     }
 }

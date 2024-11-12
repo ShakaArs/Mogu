@@ -11,6 +11,7 @@ struct SummaryView: View {
     @State private var tire: Bool = false
     @State private var brake: Bool = false
     
+    
     var body: some View {
         TabView {
             NavigationStack {
